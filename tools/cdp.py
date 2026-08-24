@@ -18,11 +18,11 @@ import time
 import urllib.request
 
 CHROME = r'C:\Program Files\Google\Chrome\Application\chrome.exe'
-# LA_PROFILE lets the login page be rendered from a signed-out profile.
-PROFILE = os.environ.get('LA_PROFILE') or os.path.expandvars(r'%LOCALAPPDATA%\liquidapple-dev-chrome')
-# LA_PORT lets two renders run at once — each needs its own debugging port
-# *and* its own LA_PROFILE, because chrome locks the profile with LevelDB.
-PORT = int(os.environ.get('LA_PORT', 9333))
+# LF_PROFILE lets the login page be rendered from a signed-out profile.
+PROFILE = os.environ.get('LF_PROFILE') or os.path.expandvars(r'%LOCALAPPDATA%\liquidfin-dev-chrome')
+# LF_PORT lets two renders run at once — each needs its own debugging port
+# *and* its own LF_PROFILE, because chrome locks the profile with LevelDB.
+PORT = int(os.environ.get('LF_PORT', 9333))
 
 
 class WS:

@@ -6,77 +6,77 @@
 
 :root {
   color-scheme: dark;
-  --la-version: "__VERSION__";
+  --lf-version: "__VERSION__";
 
   /* --- Ambient ground ------------------------------------------------------
      Glass has nothing to bend when it sits on flat black, so the page carries
      a faint colour mesh. It is what makes the material read as translucent on
      pages that have no backdrop artwork. */
-  --la-ground: #06070a;
-  --la-ground-raised: #0e1015;
-  --la-mesh-a: rgba(122, 142, 255, 0.11);
-  --la-mesh-b: rgba(255, 128, 196, 0.07);
-  --la-mesh-c: rgba(88, 220, 255, 0.06);
-  --la-mesh-opacity: 1;
+  --lf-ground: #06070a;
+  --lf-ground-raised: #0e1015;
+  --lf-mesh-a: rgba(122, 142, 255, 0.11);
+  --lf-mesh-b: rgba(255, 128, 196, 0.07);
+  --lf-mesh-c: rgba(88, 220, 255, 0.06);
+  --lf-mesh-opacity: 1;
 
   /* --- Glass material ------------------------------------------------------
      Apple's glass amplifies the colour behind it: heavy blur, saturation well
-     above 100%, and a slight brightness lift. Drop --la-saturate to 100% for
+     above 100%, and a slight brightness lift. Drop --lf-saturate to 100% for
      a plainer frosted look. */
-  --la-blur: 22px;
-  --la-blur-thin: 12px;
-  --la-blur-thick: 44px;
+  --lf-blur: 22px;
+  --lf-blur-thin: 12px;
+  --lf-blur-thick: 44px;
   /* 180% looked right against muted artwork and turned a monochrome-red poster
      into neon. Colour amplification has to survive already-saturated input. */
-  --la-saturate: 155%;
-  --la-brightness: 104%;
-  --la-material: blur(var(--la-blur)) saturate(var(--la-saturate))
-    brightness(var(--la-brightness));
-  --la-material-thin: blur(var(--la-blur-thin)) saturate(var(--la-saturate));
+  --lf-saturate: 155%;
+  --lf-brightness: 104%;
+  --lf-material: blur(var(--lf-blur)) saturate(var(--lf-saturate))
+    brightness(var(--lf-brightness));
+  --lf-material-thin: blur(var(--lf-blur-thin)) saturate(var(--lf-saturate));
   /* The thin material minus the saturation, for the pills on the item page.
-     --la-saturate is what makes a *pane* read as glass; on a 25px chip it only
+     --lf-saturate is what makes a *pane* read as glass; on a 25px chip it only
      amplifies the hue of whatever slice of the frame it happens to cover, and
      a row of tags came out as one blue, one orange and one olive. Measured on
      Avatar: Fire and Ash, the pill over the fire read rgb(228,135,108) against
      rgb(76,93,122) two pills to its left. Blur without saturate keeps the
      backdrop reading through as light and dark, not as colour. */
-  --la-material-tag: blur(var(--la-blur-thin));
-  --la-material-thick: blur(var(--la-blur-thick)) saturate(var(--la-saturate))
-    brightness(var(--la-brightness));
+  --lf-material-tag: blur(var(--lf-blur-thin));
+  --lf-material-thick: blur(var(--lf-blur-thick)) saturate(var(--lf-saturate))
+    brightness(var(--lf-brightness));
   /* Small panes that float *on* artwork rather than over the page: a card's
      play / check / heart / menu buttons, its count and played chips, the
      multi-select box, the OSD's play button. All four used to be literals —
      `blur(14px) saturate(180%) brightness(1.15)` written out in four files —
      which is why not one of the fallbacks in 99 could switch them off. Measured
-     on the live library grid with the TV token set applied: --la-material was
+     on the live library grid with the TV token set applied: --lf-material was
      already `none` and the page still carried 449 live backdrop-filters. They
      are tokens now, so 99-fallbacks reaches them like everything else. */
-  --la-material-overlay: blur(14px) saturate(180%) brightness(1.15);
-  --la-material-chip: blur(12px) saturate(180%);
+  --lf-material-overlay: blur(14px) saturate(180%) brightness(1.15);
+  --lf-material-chip: blur(12px) saturate(180%);
   /* The dim behind a dialog. One filter across the whole viewport, so it is the
      most expensive single declaration in the theme and the first one a TV box
      should lose. */
-  --la-material-scrim: blur(4px);
-  /* Their fills. Separate from --la-fill because these sit on a poster, not on
+  --lf-material-scrim: blur(4px);
+  /* Their fills. Separate from --lf-fill because these sit on a poster, not on
      chrome: when the blur goes the fill has to carry legibility alone, and 16%
      white over bright artwork carries nothing. 99-fallbacks turns them dark. */
-  --la-fill-overlay: rgba(255, 255, 255, 0.16);
-  --la-fill-chip: rgba(255, 255, 255, 0.20);
+  --lf-fill-overlay: rgba(255, 255, 255, 0.16);
+  --lf-fill-chip: rgba(255, 255, 255, 0.20);
 
   /* Fills. "chrome" sits over scrolling content and needs more body than the
      interactive fills, which float on top of already-glassy surfaces. */
-  --la-fill: rgba(255, 255, 255, 0.07);
-  --la-fill-hover: rgba(255, 255, 255, 0.13);
-  --la-fill-active: rgba(255, 255, 255, 0.19);
-  --la-fill-sunken: rgba(0, 0, 0, 0.24);
-  --la-fill-thick: rgba(26, 28, 36, 0.60);
-  --la-fill-chrome: rgba(16, 18, 24, 0.52);
+  --lf-fill: rgba(255, 255, 255, 0.07);
+  --lf-fill-hover: rgba(255, 255, 255, 0.13);
+  --lf-fill-active: rgba(255, 255, 255, 0.19);
+  --lf-fill-sunken: rgba(0, 0, 0, 0.24);
+  --lf-fill-thick: rgba(26, 28, 36, 0.60);
+  --lf-fill-chrome: rgba(16, 18, 24, 0.52);
   /* Dialogs and action sheets sit *on top of* chrome, so they run denser.
      This has to be its own root token rather than a local override of
-     --la-fill-chrome: a local override shadows the root value, and the
+     --lf-fill-chrome: a local override shadows the root value, and the
      opaque swaps in 99-fallbacks.css all target the root — so no-backdrop-
      filter, Reduce Transparency and TV would never have reached a dialog. */
-  --la-fill-dialog: rgba(22, 24, 32, 0.72);
+  --lf-fill-dialog: rgba(22, 24, 32, 0.72);
   /* The form dialog's footer is the only bar in the theme with scrolling
      content passing *underneath* it — jellyfin pins it across the dialog's
      bottom edge while a metadata form 6000px tall runs past below. A second
@@ -85,7 +85,7 @@
      field's calendar glyph still read through at rgb(34,36,42) against a
      rgb(19,22,28) bar; 0.97 puts the brightest thing the form has — white text
      — 8 levels above the bar, which is below what shows on a dark surface. */
-  --la-fill-dialog-bar: rgba(20, 22, 29, 0.97);
+  --lf-fill-dialog-bar: rgba(20, 22, 29, 0.97);
 
   /* The skip-intro button is the one control that sits on a moving picture with
      nothing under it — no chrome, no poster, no scrim. A white 7% fill on a
@@ -93,8 +93,8 @@
      bright, which is exactly when the button is on screen. So it runs dark,
      like the OSD's own chrome, one step lighter so it still reads as a control
      rather than a hole. */
-  --la-fill-skip: rgba(14, 16, 22, 0.62);
-  --la-fill-skip-hover: rgba(30, 33, 42, 0.78);
+  --lf-fill-skip: rgba(14, 16, 22, 0.62);
+  --lf-fill-skip-hover: rgba(30, 33, 42, 0.78);
 
   /* Same story as the skip button, on the item page: the tag pills and the
      external-link buttons are the only tier-2 controls that float on the hero
@@ -105,71 +105,71 @@
      grey, because 13% white plus a 24% rim desaturates whatever it covers.
      A dark neutral fill keeps the pill the same object over any frame and
      turns hover back into what it should be — one step brighter, same hue.
-     Lighter than --la-fill-skip: these also have to read on a dark ground,
+     Lighter than --lf-fill-skip: these also have to read on a dark ground,
      where the skip button never appears. */
-  --la-fill-tag: rgba(30, 33, 42, 0.72);
-  --la-fill-tag-hover: rgba(56, 61, 74, 0.86);
+  --lf-fill-tag: rgba(30, 33, 42, 0.72);
+  --lf-fill-tag-hover: rgba(56, 61, 74, 0.86);
 
   /* --- Progress tracks -----------------------------------------------------
      Three states share one bar, so they have to be three readable steps: empty
-     track, buffered-ahead, played. The played part is --la-accent; these two
-     are what is left. --la-track-buffered lands on jellyfin's own
+     track, buffered-ahead, played. The played part is --lf-accent; these two
+     are what is left. --lf-track-buffered lands on jellyfin's own
      .mdl-slider-background-upper — see 08-player.css. */
-  --la-track: rgba(255, 255, 255, 0.22);
-  --la-track-buffered: rgba(255, 255, 255, 0.42);
+  --lf-track: rgba(255, 255, 255, 0.22);
+  --lf-track-buffered: rgba(255, 255, 255, 0.42);
 
   /* --- Rim light -----------------------------------------------------------
      A pane of glass is lit from above and shadowed below. This one composite
      shadow does most of the visual work in the whole theme. */
-  --la-rim: rgba(255, 255, 255, 0.11);
-  --la-rim-top: rgba(255, 255, 255, 0.24);
-  --la-rim-bottom: rgba(0, 0, 0, 0.26);
-  --la-rim-hover: rgba(255, 255, 255, 0.24);
-  --la-edge:
-    inset 0 1px 0 0 var(--la-rim-top),
-    inset 0 -1px 0 0 var(--la-rim-bottom),
-    inset 0 0 0 1px var(--la-rim);
-  --la-edge-soft:
+  --lf-rim: rgba(255, 255, 255, 0.11);
+  --lf-rim-top: rgba(255, 255, 255, 0.24);
+  --lf-rim-bottom: rgba(0, 0, 0, 0.26);
+  --lf-rim-hover: rgba(255, 255, 255, 0.24);
+  --lf-edge:
+    inset 0 1px 0 0 var(--lf-rim-top),
+    inset 0 -1px 0 0 var(--lf-rim-bottom),
+    inset 0 0 0 1px var(--lf-rim);
+  --lf-edge-soft:
     inset 0 1px 0 0 rgba(255, 255, 255, 0.22),
-    inset 0 0 0 1px var(--la-rim);
+    inset 0 0 0 1px var(--lf-rim);
 
   /* --- Edge refraction -----------------------------------------------------
      The signature Liquid Glass trick: the outer few pixels of a pane bend and
      brighten what is behind them. Faked with a masked ring that carries its
-     own backdrop-filter. Set --la-refract-blur to 0px to switch it off. */
-  --la-refract-blur: 6px;
-  --la-refract-width: 7px;
-  --la-refract-bright: 1.14;
-  --la-refract-sat: 125%;
+     own backdrop-filter. Set --lf-refract-blur to 0px to switch it off. */
+  --lf-refract-blur: 6px;
+  --lf-refract-width: 7px;
+  --lf-refract-bright: 1.14;
+  --lf-refract-sat: 125%;
 
   /* --- Depth --------------------------------------------------------------- */
-  --la-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.30), 0 2px 8px rgba(0, 0, 0, 0.20);
-  --la-shadow-md: 0 2px 6px rgba(0, 0, 0, 0.30), 0 10px 30px rgba(0, 0, 0, 0.34);
-  --la-shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.34), 0 24px 60px rgba(0, 0, 0, 0.44);
-  --la-shadow-lift: 0 6px 16px rgba(0, 0, 0, 0.36), 0 32px 72px rgba(0, 0, 0, 0.50);
+  --lf-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.30), 0 2px 8px rgba(0, 0, 0, 0.20);
+  --lf-shadow-md: 0 2px 6px rgba(0, 0, 0, 0.30), 0 10px 30px rgba(0, 0, 0, 0.34);
+  --lf-shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.34), 0 24px 60px rgba(0, 0, 0, 0.44);
+  --lf-shadow-lift: 0 6px 16px rgba(0, 0, 0, 0.36), 0 32px 72px rgba(0, 0, 0, 0.50);
 
   /* --- Radii ---------------------------------------------------------------
      Concentric: a child's radius should be the parent's minus the gap. */
-  --la-r-xs: 8px;
-  --la-r-sm: 12px;
-  --la-r-md: 16px;
-  --la-r-lg: 22px;
-  --la-r-xl: 28px;
-  --la-r-2xl: 34px;
-  --la-r-pill: 999px;
+  --lf-r-xs: 8px;
+  --lf-r-sm: 12px;
+  --lf-r-md: 16px;
+  --lf-r-lg: 22px;
+  --lf-r-xl: 28px;
+  --lf-r-2xl: 34px;
+  --lf-r-pill: 999px;
 
   /* --- Type ---------------------------------------------------------------
      Whatever the machine already has: SF Pro on Apple hardware, Segoe UI on
      windows, Roboto on android. The theme downloads no font — it used to pull
      Inter from google, which was dropped on 2026-08-18, see CLAUDE.md. Name a
-     face in `--la-font` to use one; anything installed works. */
-  --la-font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+     face in `--lf-font` to use one; anything installed works. */
+  --lf-font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
     system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   /* Titles ask for the *display* cut rather than the body face enlarged. Both
      platform families ship one — SF Pro Display, and Segoe UI Variable Display
      with its own opsz axis, which is what font-optical-sizing: auto reaches for
      in 05-detail.css. */
-  --la-font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont,
+  --lf-font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont,
     "Segoe UI Variable Display", "Segoe UI Variable",
     system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   /* Item title. ElegantFin's signature is a big, *thin* name — 4em at weight
@@ -177,114 +177,114 @@
      "their font". Apple's own titles are the opposite (heavy, tight), so raise
      the weight and drop the size here if the hero should look more like SF and
      less like ElegantFin. */
-  --la-title-size: 4em;
-  --la-title-size-mobile: 2em;
-  --la-title-weight: 200;
-  --la-title-tracking: normal;
-  --la-tracking-tight: -0.021em;
-  --la-tracking-display: -0.032em;
-  --la-text: rgba(255, 255, 255, 0.96);
-  --la-text-dim: rgba(255, 255, 255, 0.62);
-  --la-text-faint: rgba(255, 255, 255, 0.40);
-  --la-text-invert: #0a0a0c;
+  --lf-title-size: 4em;
+  --lf-title-size-mobile: 2em;
+  --lf-title-weight: 200;
+  --lf-title-tracking: normal;
+  --lf-tracking-tight: -0.021em;
+  --lf-tracking-display: -0.032em;
+  --lf-text: rgba(255, 255, 255, 0.96);
+  --lf-text-dim: rgba(255, 255, 255, 0.62);
+  --lf-text-faint: rgba(255, 255, 255, 0.40);
+  --lf-text-invert: #0a0a0c;
 
   /* --- Accent -------------------------------------------------------------
      Neutral on purpose. Apple's default glass is colourless and lets the
      content underneath supply the colour; the accent only marks the one
-     primary action on screen. Set --la-accent to any colour to tint it. */
-  --la-accent: #f5f5f7;
-  --la-accent-text: #0a0a0c;
-  --la-accent-glow: rgba(255, 255, 255, 0.28);
-  --la-danger: #ff453a;
-  --la-warn: #ff9f0a;
-  --la-success: #30d158;
-  --la-focus: rgba(255, 255, 255, 0.90);
+     primary action on screen. Set --lf-accent to any colour to tint it. */
+  --lf-accent: #f5f5f7;
+  --lf-accent-text: #0a0a0c;
+  --lf-accent-glow: rgba(255, 255, 255, 0.28);
+  --lf-danger: #ff453a;
+  --lf-warn: #ff9f0a;
+  --lf-success: #30d158;
+  --lf-focus: rgba(255, 255, 255, 0.90);
 
   /* --- Motion -------------------------------------------------------------
-     --la-ease is the curve iOS uses to present a sheet: fast out of the gate,
-     long settle. --la-ease-out is for hover states, which need to feel
+     --lf-ease is the curve iOS uses to present a sheet: fast out of the gate,
+     long settle. --lf-ease-out is for hover states, which need to feel
      immediate rather than springy. */
-  --la-ease: cubic-bezier(0.32, 0.72, 0, 1);
-  --la-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --la-fast: 160ms;
-  --la-normal: 280ms;
-  --la-slow: 440ms;
+  --lf-ease: cubic-bezier(0.32, 0.72, 0, 1);
+  --lf-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --lf-fast: 160ms;
+  --lf-normal: 280ms;
+  --lf-slow: 440ms;
 
   /* A bezier can only ease, never overshoot — so a card that "pops" and a sheet
      that settles need a real damped spring. These are the SwiftUI spring model
      (the one anime.js exposes as its spring easing) sampled into linear(),
-     retuned from its 1.3s settle to something a UI can use: --la-spring is
-     zeta 0.52 / omega 26, --la-spring-sheet is the calmer zeta 0.72 / omega 20.
+     retuned from its 1.3s settle to something a UI can use: --lf-spring is
+     zeta 0.52 / omega 26, --lf-spring-sheet is the calmer zeta 0.72 / omega 20.
      The durations are the settle times and belong to the curves — changing one
      without the other breaks the physics. Bezier values here are the fallback;
      the @supports block below swaps in the springs where linear() exists. */
-  --la-spring: var(--la-ease);
-  --la-spring-sheet: var(--la-ease);
-  --la-spring-t: var(--la-normal);
-  --la-spring-sheet-t: var(--la-normal);
+  --lf-spring: var(--lf-ease);
+  --lf-spring-sheet: var(--lf-ease);
+  --lf-spring-t: var(--lf-normal);
+  --lf-spring-sheet-t: var(--lf-normal);
 
   /* --- Layout ------------------------------------------------------------- */
   /* The bar sits directly on artwork, and glass amplifies whatever is behind
-     it. Over a saturated backdrop the full --la-saturate turned the header
+     it. Over a saturated backdrop the full --lf-saturate turned the header
      into a solid colour slab — measured on a phone against red artwork. Its
      own, calmer material, and a denser fill so the colour cannot dominate. */
-  --la-header-saturate: 115%;
-  --la-material-header: blur(var(--la-blur)) saturate(var(--la-header-saturate));
-  --la-fill-header-solid: rgba(13, 15, 20, 0.72);
-  --la-header-h: 4.2em;
-  --la-gutter: 1.6em;
-  --la-lift: -4px; /* how far a hovered card rises */
+  --lf-header-saturate: 115%;
+  --lf-material-header: blur(var(--lf-blur)) saturate(var(--lf-header-saturate));
+  --lf-fill-header-solid: rgba(13, 15, 20, 0.72);
+  --lf-header-h: 4.2em;
+  --lf-gutter: 1.6em;
+  --lf-lift: -4px; /* how far a hovered card rises */
   /* The check / favourite / menu row that floats over a card. Jellyfin packs
      them edge to edge and flush into the corner; these are the air. */
-  --la-card-overlay-gap: 0.4em;
-  --la-card-overlay-inset: 0.55em;
+  --lf-card-overlay-gap: 0.4em;
+  --lf-card-overlay-inset: 0.55em;
   /* The centred play button. Jellyfin's 3em at 130% is 58px, which on a
      252x142 card overlaps the button row in the corner — measured at every
      width from 900 to 1600, not just narrow windows. */
-  --la-card-fab-size: 2.2em;
-  --la-card-overlay-btn: 2.45em;
+  --lf-card-fab-size: 2.2em;
+  --lf-card-overlay-btn: 2.45em;
   /* Room the item grid has to keep clear for the alpha picker. The glass pill
      is wider than jellyfin's bare picker, and jellyfin's own reservation is a
      percentage — too little on a phone. See 06-controls.css. */
-  --la-alphapicker-clear: 46px;
+  --lf-alphapicker-clear: 46px;
 
   /* --- Detail hero --------------------------------------------------------
      The item page is a hero: artwork takes most of the viewport and the info
      block sits at the bottom of it behind a scrim. The geometry follows
      ElegantFin's, which is proven against jellyfin's own layout.
 
-     --la-hero-align centres the title, chips and buttons. Body copy below stays
+     --lf-hero-align centres the title, chips and buttons. Body copy below stays
      left-aligned either way. Set it to `start` for a left-aligned hero.
-     --la-detail-poster is `none` because a poster and a full-bleed backdrop
+     --lf-detail-poster is `none` because a poster and a full-bleed backdrop
      fight over the same space; set it to `block` to bring the poster back. */
-  --la-hero-height: 72vh;
-  --la-hero-min: 46vh;
-  --la-hero-ribbon-min: 25vh;
+  --lf-hero-height: 72vh;
+  --lf-hero-min: 46vh;
+  --lf-hero-ribbon-min: 25vh;
   /* The veil that blends the artwork into the page, drawn on
      .backgroundContainer.withBackdrop — the only element that shares a
      coordinate system with the fixed backdrop. Percentages are of the viewport.
-     Above --la-hero-scrim-start the artwork is untouched: push it down to keep
+     Above --lf-hero-scrim-start the artwork is untouched: push it down to keep
      more of the image, pull it up if titles are hard to read. */
-  --la-hero-scrim-start: 42%;
-  --la-hero-scrim-mid: rgba(6, 7, 10, 0.34);
-  --la-hero-scrim: rgba(6, 7, 10, 0.80);
+  --lf-hero-scrim-start: 42%;
+  --lf-hero-scrim-mid: rgba(6, 7, 10, 0.34);
+  --lf-hero-scrim: rgba(6, 7, 10, 0.80);
   /* How far the info block rides up onto the artwork. 0 leaves image and text
      as separate bands, which reads as a gap rather than a hero. */
-  --la-hero-overlap: 14vh;
-  --la-hero-align: center;
-  --la-detail-poster: none;
+  --lf-hero-overlap: 14vh;
+  --lf-hero-align: center;
+  --lf-detail-poster: none;
   /* The clear logo — the film's own title artwork, which is what ElegantFin
      shows instead of a text title. 269 of 275 items on the reference server
      carry one, and jellyfin marks the ones that do not with .hide, so the text
      title can step back in without ever leaving the page nameless.
-     --la-detail-title is the text title *while a logo is shown*; set it to
-     block to get both, or set --la-detail-logo to none for text only. */
-  --la-detail-logo: block;
-  --la-detail-logo-h: 15vh;
-  --la-detail-title: none;
+     --lf-detail-title is the text title *while a logo is shown*; set it to
+     block to get both, or set --lf-detail-logo to none for text only. */
+  --lf-detail-logo: block;
+  --lf-detail-logo-h: 15vh;
+  --lf-detail-title: none;
   /* Shared left edge for hero text, body copy and the section rows. Raise to
-     ~33vw together with --la-detail-poster: block. */
-  --la-hero-inset: var(--la-gutter);
+     ~33vw together with --lf-detail-poster: block. */
+  --lf-hero-inset: var(--lf-gutter);
 
   /* --- Header chrome -------------------------------------------------------
      The header is the one pane that is 25 times wider than it is tall, so the
@@ -295,57 +295,57 @@
   /* How far the floating chrome (header, drawer) sits off the viewport edge.
      jellyfin parks the closed drawer against that same number, so it is shared
      rather than repeated. */
-  --la-chrome-inset: 0.55em;
-  /* A 62px bar at --la-r-xl is *almost* a capsule, which reads as an accident.
-     Set this to var(--la-r-xl) for a softened rectangle instead. */
-  --la-header-radius: var(--la-r-xl);
-  /* --la-refract-width is 7px, a fifth of the header's height and nearly half
+  --lf-chrome-inset: 0.55em;
+  /* A 62px bar at --lf-r-xl is *almost* a capsule, which reads as an accident.
+     Set this to var(--lf-r-xl) for a softened rectangle instead. */
+  --lf-header-radius: var(--lf-r-xl);
+  /* --lf-refract-width is 7px, a fifth of the header's height and nearly half
      the tab capsule's. The ring has to scale with the pane it hugs. */
-  --la-header-refract-w: 4px;
-  --la-tabs-refract-w: 2.5px;
+  --lf-header-refract-w: 4px;
+  --lf-tabs-refract-w: 2.5px;
   /* The specular sheen, straight top-down instead of 02's diagonal rake — the
      rake's gradient line is only 388px long on a 1584px bar. */
-  --la-sheen-top: rgba(255, 255, 255, 0.11);
-  --la-sheen-mid: rgba(255, 255, 255, 0.035);
+  --lf-sheen-top: rgba(255, 255, 255, 0.11);
+  --lf-sheen-mid: rgba(255, 255, 255, 0.035);
   /* Over hero artwork jellyfin drops the header's background entirely and never
      brings it back, so the bar needs *something* that keeps content readable
      when it scrolls underneath. A scrim, the way iOS handles a nav bar over a
-     photo: no pane, no rim, just a falloff. --la-header-scrim-fade is how far
+     photo: no pane, no rim, just a falloff. --lf-header-scrim-fade is how far
      past the bar it keeps fading. */
-  --la-header-scrim: rgba(6, 7, 10, 0.62);
-  --la-header-scrim-mid: rgba(6, 7, 10, 0.22);
-  --la-header-scrim-fade: 1.8em;
+  --lf-header-scrim: rgba(6, 7, 10, 0.62);
+  --lf-header-scrim-mid: rgba(6, 7, 10, 0.22);
+  --lf-header-scrim-fade: 1.8em;
   /* How far the item page has to scroll before the bar stops being a scrim and
      becomes the same glass pane it is everywhere else. Roughly two bar heights;
      0px would mean the pane is always there. Needs scroll-driven animations —
      without them the scrim is the whole story. */
-  --la-header-materialise-at: 130px;
-  --la-header-icon-shadow: 0 1px 6px rgba(0, 0, 0, 0.7);
-  /* Clearance for the hidden header. --la-shadow-lg reaches 84px below the box
+  --lf-header-materialise-at: 130px;
+  --lf-header-icon-shadow: 0 1px 6px rgba(0, 0, 0, 0.7);
+  /* Clearance for the hidden header. --lf-shadow-lg reaches 84px below the box
      (24px offset + 60px blur), so -100% alone leaves a dark smear across the
      top of the page. Measured on mobile, where jellyfin actually uses headroom:
      6em was still 5px short. */
-  --la-header-hide-clear: 8em;
+  --lf-header-hide-clear: 8em;
   /* Inset trough: a pressed-in well for the tab strip and the search field. */
-  --la-edge-sunken:
+  --lf-edge-sunken:
     inset 0 1px 2px rgba(0, 0, 0, 0.32),
-    inset 0 0 0 1px var(--la-rim);
+    inset 0 0 0 1px var(--lf-rim);
   /* The selected segment. Glass, like every other "this one is on" state in the
-     theme (see .navMenuOption-selected) — a solid --la-accent pill would claim
+     theme (see .navMenuOption-selected) — a solid --lf-accent pill would claim
      to be the primary action on the page, which a tab is not. Set these to
-     var(--la-accent) / var(--la-accent-text) to get the solid pill back. */
-  --la-tab-active-bg: var(--la-fill-active);
-  --la-tab-active-text: #fff;
+     var(--lf-accent) / var(--lf-accent-text) to get the solid pill back. */
+  --lf-tab-active-bg: var(--lf-fill-active);
+  --lf-tab-active-text: #fff;
 
   /* --- Menus --------------------------------------------------------------
      Action sheets — the item context menu, the OSD settings sheet, the audio
      and subtitle pickers — land on artwork or on moving video and are read at
      a glance, so they carry a little more body than the header does. This is
-     an extra veil *layered over* --la-fill-chrome, not a replacement for it:
+     an extra veil *layered over* --lf-fill-chrome, not a replacement for it:
      replacing it would defeat the opaque token swaps in 99-fallbacks and the
      TV block. Set to `transparent` for menus as sheer as the rest of the
      chrome. */
-  --la-menu-veil: rgba(8, 9, 13, 0.34);
+  --lf-menu-veil: rgba(8, 9, 13, 0.34);
 }
 
 /* linear() is what makes a spring expressible in CSS at all. Old TV webviews do
@@ -355,24 +355,24 @@
    overshoot reads as motion rather than as steps. */
 @supports (transition-timing-function: linear(0, 1)) {
   :root {
-    --la-spring: linear(
+    --lf-spring: linear(
       0, 0.1237, 0.3913, 0.6795, 0.9142, 1.0659, 1.1364, 1.1454, 1.1176, 1.0754,
       1.0346, 1.0038, 0.9856, 0.9786, 0.9795, 0.9846, 0.991, 0.9966, 1.0005,
       1.0026, 1.0032, 1.0028, 1.002, 1
     );
-    --la-spring-sheet: linear(
+    --lf-spring-sheet: linear(
       0, 0.0775, 0.248, 0.4441, 0.6264, 0.7757, 0.8866, 0.9615, 1.0068, 1.0299,
       1.038, 1.037, 1.0313, 1.0238, 1.0165, 1.0103, 1.0056, 1.0023, 1.0002,
       0.9991, 0.9986, 0.9985, 0.9987, 1
     );
-    --la-spring-t: 480ms;
-    --la-spring-sheet-t: 500ms;
+    --lf-spring-t: 480ms;
+    --lf-spring-sheet-t: 500ms;
   }
 }
 
 /* --- Detail hero: the two smaller layouts --------------------------------
    Mobile and TV reserve less of the viewport for the hero than the desktop's
-   --la-hero-height. Both numbers used to sit inline in 01-base.css, and the
+   --lf-hero-height. Both numbers used to sit inline in 01-base.css, and the
    clear-logo rule in 05-detail.css then repeated the mobile one as a literal —
    so changing one of the two silently moved the logo off the hero. One token
    each, referenced everywhere.
@@ -381,14 +381,14 @@
    1920x1080. Appended after the block above rather than merged into it so the
    file's existing ordering stays untouched. */
 :root {
-  --la-hero-height-mobile: 46vh;
-  --la-hero-height-tv: 42vh;
+  --lf-hero-height-mobile: 46vh;
+  --lf-hero-height-tv: 42vh;
 }
 
 /* --- Focus ring ----------------------------------------------------------
    Measured on a real .layout-tv client (Android TV user agent, 1920x1080):
-   01-base.css draws the ring as `0 0 0 2px var(--la-ground), 0 0 0 3px
-   var(--la-focus)`. Box shadows paint in source order, first on top, so the
+   01-base.css draws the ring as `0 0 0 2px var(--lf-ground), 0 0 0 3px
+   var(--lf-focus)`. Box shadows paint in source order, first on top, so the
    2px of ground covers all but the outermost pixel of the 3px band — sampling
    the screenshot at the left edge of a focused card gives exactly one pixel of
    230,231,231 followed by two of 6,7,10. One pixel across a 1920-wide screen
@@ -401,28 +401,28 @@
      band  the bright part — the one people actually see
      halo  dark edge outside it, for when the neighbour is bright artwork
 
-   99-fallbacks.css scales all three up for .layout-tv and swaps --la-focus to
-   solid white; nothing else has to change. --la-focus-clear is the room a
+   99-fallbacks.css scales all three up for .layout-tv and swaps --lf-focus to
+   solid white; nothing else has to change. --lf-focus-clear is the room a
    container has to keep free so overflow: hidden cannot cut the ring off. */
 :root {
-  --la-focus-sep: 2px;
-  --la-focus-band: 2px;
-  --la-focus-halo: 1px;
-  --la-focus-clear: calc(
-    var(--la-focus-sep) + var(--la-focus-band) + var(--la-focus-halo));
-  --la-focus-shade: rgba(0, 0, 0, 0.92);
-  --la-focus-fill: var(--la-fill-active);
-  --la-focus-scale: 1.06;
-  --la-focus-ring:
-    0 0 0 var(--la-focus-sep) var(--la-focus-shade),
-    0 0 0 calc(var(--la-focus-sep) + var(--la-focus-band)) var(--la-focus),
-    0 0 0 var(--la-focus-clear) var(--la-focus-shade);
+  --lf-focus-sep: 2px;
+  --lf-focus-band: 2px;
+  --lf-focus-halo: 1px;
+  --lf-focus-clear: calc(
+    var(--lf-focus-sep) + var(--lf-focus-band) + var(--lf-focus-halo));
+  --lf-focus-shade: rgba(0, 0, 0, 0.92);
+  --lf-focus-fill: var(--lf-fill-active);
+  --lf-focus-scale: 1.06;
+  --lf-focus-ring:
+    0 0 0 var(--lf-focus-sep) var(--lf-focus-shade),
+    0 0 0 calc(var(--lf-focus-sep) + var(--lf-focus-band)) var(--lf-focus),
+    0 0 0 var(--lf-focus-clear) var(--lf-focus-shade);
 
   /* The sunken well every text field and checkbox shares. It was written out
      as a literal in four places in 06-controls.css. */
-  --la-well: inset 0 1px 2px rgba(0, 0, 0, 0.32);
+  --lf-well: inset 0 1px 2px rgba(0, 0, 0, 0.32);
 
   /* Blur under a card's footer band. Applied through a masked layer, so it can
      be stronger than the 3px that used to sit on the band itself. */
-  --la-card-footer-blur: 5px;
+  --lf-card-footer-blur: 5px;
 }

@@ -11,7 +11,7 @@
   /* The refraction ring inherits its width from 02, where it was sized against
      a dialog. Seven pixels of it top and bottom of a 62px bar is a fifth of the
      whole pane and reads as a second, blurrier border inside the rim. */
-  --la-refract-width: var(--la-header-refract-w);
+  --lf-refract-width: var(--lf-header-refract-w);
   /* transform is the only thing here that may animate, and the list is short on
      purpose. What the other three did, measured on the live client:
 
@@ -38,21 +38,21 @@
      place the header is *meant* to change gradually keeps doing so on its own:
      the ::after pane below fades in on a scroll timeline, which is opacity on a
      pseudo and untouched by any of this. */
-  transition: transform var(--la-normal) var(--la-ease);
+  transition: transform var(--lf-normal) var(--lf-ease);
 }
 
 /* The bar has to be one height on every page. jellyfin's is not: with section
    tabs it pads .headerTop at the bottom and then pulls .headerTabs back up by a
    hard-coded -3.591em so the tab row's *bottom* meets the header's bottom.
-   Measured against our --la-header-h that gave 59.9px on the home page, 62.5px
+   Measured against our --lf-header-h that gave 59.9px on the home page, 62.5px
    on an item page, and a .headerTop that overflowed its own header by 10.7px —
    visible only because overflow is hidden. On desktop the tab strip comes out
    of the flow further down, so that padding can go and the bar is
-   --la-header-h on every page. Mobile keeps both — there the strip is a real
+   --lf-header-h on every page. Mobile keeps both — there the strip is a real
    second row and the padding is the gap between them. */
 .headerTop {
   align-items: center;
-  height: var(--la-header-h);
+  height: var(--lf-header-h);
   padding: 0 0.5em;
 }
 
@@ -66,8 +66,8 @@
 /* --- The bar's own material ----------------------------------------------
    02's tier-1 recipe is written for a pane that lands on scrolling page
    content. The header is the one pane that lands on *artwork* on every item
-   page, and glass amplifies whatever is behind it. --la-material-header and
-   --la-fill-header-solid — a calmer saturate and a denser fill — were added
+   page, and glass amplifies whatever is behind it. --lf-material-header and
+   --lf-fill-header-solid — a calmer saturate and a denser fill — were added
    for mobile on 2026-08-19 after the bar turned into a solid red slab over red
    artwork; the desktop bar was left on the shared recipe and does exactly the
    same thing. Measured on Avatar: Fire and Ash at 1537px, scrolled to y=441:
@@ -79,23 +79,23 @@
    the OSD header is excluded there and stays excluded here. */
 .skinHeader.skinHeader-blurred:not(.osdHeader),
 .skinHeader.skinHeader-withBackground:not(.osdHeader) {
-  background-color: var(--la-fill-header-solid);
-  -webkit-backdrop-filter: var(--la-material-header);
-  backdrop-filter: var(--la-material-header);
+  background-color: var(--lf-fill-header-solid);
+  -webkit-backdrop-filter: var(--lf-material-header);
+  backdrop-filter: var(--lf-material-header);
 }
 
 /* Mobile runs the bar full-bleed, so there are no side or top edges to draw —
-   but --la-edge from 02 rings the whole pane, and those hairlines land right
+   but --lf-edge from 02 rings the whole pane, and those hairlines land right
    on the screen edges and read as a frame around a floating box. One bottom
    hairline instead. The fill and the material repeat the rule above on purpose:
    this selector also catches a bare .skinHeader, which carries neither of the
    two state classes and would otherwise be left transparent. */
 .layout-mobile .skinHeader:not(.osdHeader) {
-  background-color: var(--la-fill-header-solid);
-  -webkit-backdrop-filter: var(--la-material-header);
-  backdrop-filter: var(--la-material-header);
+  background-color: var(--lf-fill-header-solid);
+  -webkit-backdrop-filter: var(--lf-material-header);
+  backdrop-filter: var(--lf-material-header);
   border-radius: 0;
-  box-shadow: inset 0 -1px 0 0 var(--la-rim);
+  box-shadow: inset 0 -1px 0 0 var(--lf-rim);
 }
 
 /* The refraction ring draws its own bright edge on all four sides. */
@@ -106,9 +106,9 @@
 
 .layout-desktop .skinHeader-blurred:not(.osdHeader),
 .layout-desktop .skinHeader-withBackground:not(.osdHeader) {
-  margin: var(--la-chrome-inset);
-  border-radius: var(--la-header-radius);
-  box-shadow: var(--la-edge), var(--la-shadow-lg);
+  margin: var(--lf-chrome-inset);
+  border-radius: var(--lf-header-radius);
+  box-shadow: var(--lf-edge), var(--lf-shadow-lg);
   overflow: hidden;
 }
 
@@ -122,8 +122,8 @@
 .skinHeader.skinHeader-blurred:not(.osdHeader)::before {
   background: linear-gradient(
     180deg,
-    var(--la-sheen-top) 0%,
-    var(--la-sheen-mid) 44%,
+    var(--lf-sheen-top) 0%,
+    var(--lf-sheen-mid) 44%,
     transparent 80%
   );
 }
@@ -167,13 +167,13 @@
   right: 0;
   bottom: auto;
   left: 0;
-  height: calc(100% + var(--la-header-scrim-fade));
+  height: calc(100% + var(--lf-header-scrim-fade));
   border-radius: 0;
   pointer-events: none;
   background: linear-gradient(
     180deg,
-    var(--la-header-scrim) 0%,
-    var(--la-header-scrim-mid) 54%,
+    var(--lf-header-scrim) 0%,
+    var(--lf-header-scrim-mid) 54%,
     transparent 100%
   );
 }
@@ -183,11 +183,11 @@
    it on three sides. */
 .layout-desktop
   .skinHeader.skinHeader-withBackground.semiTransparent:not(.osdHeader)::before {
-  top: calc(-1 * var(--la-chrome-inset));
-  right: calc(-1 * var(--la-chrome-inset));
-  left: calc(-1 * var(--la-chrome-inset));
+  top: calc(-1 * var(--lf-chrome-inset));
+  right: calc(-1 * var(--lf-chrome-inset));
+  left: calc(-1 * var(--lf-chrome-inset));
   height: calc(
-    100% + var(--la-chrome-inset) + var(--la-header-scrim-fade)
+    100% + var(--lf-chrome-inset) + var(--lf-header-scrim-fade)
   );
 }
 
@@ -224,10 +224,10 @@
   /* The header's own material, not 02's — this pane fades in *over the hero
      artwork*, which is the worst case the calmer recipe exists for. See the
      material rule at the top of this file. */
-  background: var(--la-fill-header-solid);
-  -webkit-backdrop-filter: var(--la-material-header);
-  backdrop-filter: var(--la-material-header);
-  box-shadow: var(--la-edge), var(--la-shadow-lg);
+  background: var(--lf-fill-header-solid);
+  -webkit-backdrop-filter: var(--lf-material-header);
+  backdrop-filter: var(--lf-material-header);
+  box-shadow: var(--lf-edge), var(--lf-shadow-lg);
   opacity: 0;
   pointer-events: none;
 }
@@ -235,20 +235,20 @@
 /* The bar only floats on desktop, so only there does the pane get the capsule. */
 .layout-desktop
   .skinHeader.skinHeader-withBackground.semiTransparent:not(.osdHeader)::after {
-  border-radius: var(--la-header-radius);
+  border-radius: var(--lf-header-radius);
 }
 
 @supports (animation-timeline: scroll()) {
   .skinHeader.skinHeader-withBackground.semiTransparent:not(.osdHeader)::after {
     animation: la-header-pane-in linear both;
     animation-timeline: scroll(root block);
-    animation-range: 0 var(--la-header-materialise-at);
+    animation-range: 0 var(--lf-header-materialise-at);
   }
 
   .skinHeader.skinHeader-withBackground.semiTransparent:not(.osdHeader)::before {
     animation: la-header-scrim-out linear both;
     animation-timeline: scroll(root block);
-    animation-range: 0 var(--la-header-materialise-at);
+    animation-range: 0 var(--lf-header-materialise-at);
   }
 }
 
@@ -284,50 +284,50 @@
    bright right where an icon happens to sit. */
 .skinHeader-withBackground.semiTransparent:not(.osdHeader) .headerButton,
 .skinHeader-withBackground.semiTransparent:not(.osdHeader) .pageTitle {
-  text-shadow: var(--la-header-icon-shadow);
+  text-shadow: var(--lf-header-icon-shadow);
 }
 
-/* -100% clears the box but not --la-shadow-lg, which reaches 84px below it and
+/* -100% clears the box but not --lf-shadow-lg, which reaches 84px below it and
    would leave a dark smear across the top of the page. */
 .headroom--unpinned:not(.osdHeader) {
-  transform: translateY(calc(-100% - var(--la-header-hide-clear)));
+  transform: translateY(calc(-100% - var(--lf-header-hide-clear)));
 }
 
 /* --- Header buttons ------------------------------------------------------- */
 .headerButton,
 .paper-icon-button-light {
-  border-radius: var(--la-r-pill);
-  color: var(--la-text);
+  border-radius: var(--lf-r-pill);
+  color: var(--lf-text);
   transition:
-    background-color var(--la-fast) var(--la-ease-out),
-    transform var(--la-fast) var(--la-ease-out),
-    box-shadow var(--la-fast) var(--la-ease-out);
+    background-color var(--lf-fast) var(--lf-ease-out),
+    transform var(--lf-fast) var(--lf-ease-out),
+    box-shadow var(--lf-fast) var(--lf-ease-out);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .paper-icon-button-light:hover:not(:disabled) {
-    background-color: var(--la-fill-hover);
-    box-shadow: var(--la-edge-soft);
+    background-color: var(--lf-fill-hover);
+    box-shadow: var(--lf-edge-soft);
     color: #fff;
     transform: none;
   }
 }
 
 .paper-icon-button-light:active:not(:disabled) {
-  background-color: var(--la-fill-active);
+  background-color: var(--lf-fill-active);
   transform: scale(0.92);
 }
 
 .pageTitle {
   font-weight: 650;
-  letter-spacing: var(--la-tracking-display);
+  letter-spacing: var(--lf-tracking-display);
   margin-inline-start: 0.35em;
 }
 
 .headerUserButton .MuiAvatar-circular,
 .headerUserButton img {
-  border-radius: var(--la-r-pill);
-  box-shadow: var(--la-edge-soft), var(--la-shadow-sm);
+  border-radius: var(--lf-r-pill);
+  box-shadow: var(--lf-edge-soft), var(--lf-shadow-sm);
 }
 
 /* --- Section tabs --------------------------------------------------------
@@ -374,14 +374,14 @@
   display: inline-flex;
   margin: 0.15em 0.6em 0.55em;
   padding: 0.22em;
-  border-radius: var(--la-r-pill);
-  background: var(--la-fill-sunken);
-  -webkit-backdrop-filter: var(--la-material-thin);
-  backdrop-filter: var(--la-material-thin);
-  box-shadow: var(--la-edge-sunken);
+  border-radius: var(--lf-r-pill);
+  background: var(--lf-fill-sunken);
+  -webkit-backdrop-filter: var(--lf-material-thin);
+  backdrop-filter: var(--lf-material-thin);
+  box-shadow: var(--lf-edge-sunken);
   overflow: hidden;
   /* 7px of refraction ring on a 34px capsule is 40% of it from each side */
-  --la-refract-width: var(--la-tabs-refract-w);
+  --lf-refract-width: var(--lf-tabs-refract-w);
 }
 
 /* Centred by the flex parent above, so the strip's own offsets go. */
@@ -396,31 +396,31 @@
   height: 2.3em;
   margin: 0;
   padding: 0 1.15em;
-  border-radius: var(--la-r-pill);
+  border-radius: var(--lf-r-pill);
   background-color: transparent;
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
   box-shadow: none;
-  color: var(--la-text-dim);
+  color: var(--lf-text-dim);
   font-weight: 550;
-  letter-spacing: var(--la-tracking-tight);
+  letter-spacing: var(--lf-tracking-tight);
   text-transform: none;
   white-space: nowrap;
 }
 
 .sectionTabs .emby-tab-button:hover {
-  background-color: var(--la-fill);
+  background-color: var(--lf-fill);
   box-shadow: none;
-  color: var(--la-text);
+  color: var(--lf-text);
 }
 
 /* The selected segment is glass, not a solid accent pill — same reasoning as
-   .navMenuOption-selected, and --la-tab-active-bg switches it back. */
+   .navMenuOption-selected, and --lf-tab-active-bg switches it back. */
 .sectionTabs .emby-tab-button-active,
 .sectionTabs .emby-tab-button-active:hover {
-  background-color: var(--la-tab-active-bg);
-  box-shadow: var(--la-edge-soft), var(--la-shadow-sm);
-  color: var(--la-tab-active-text);
+  background-color: var(--lf-tab-active-bg);
+  box-shadow: var(--lf-edge-soft), var(--lf-shadow-sm);
+  color: var(--lf-tab-active-text);
   font-weight: 600;
 }
 
@@ -430,29 +430,29 @@
 }
 
 /* --- Drawer --------------------------------------------------------------
-   A local `--la-blur: var(--la-blur-thick)` used to stand here and did nothing.
-   --la-material is declared on :root, so its var() references are substituted
+   A local `--lf-blur: var(--lf-blur-thick)` used to stand here and did nothing.
+   --lf-material is declared on :root, so its var() references are substituted
    *there*; what inherits down is the finished string blur(22px) saturate(…),
    and overriding an ingredient afterwards has nothing left to feed. Measured on
-   the open drawer: --la-blur computed to 44px while backdrop-filter stayed at
+   the open drawer: --lf-blur computed to 44px while backdrop-filter stayed at
    blur(22px). The thick material has to be named directly.
    Honest note on the payoff: side by side at fill 0.66 the difference is small
    — a little less of the artwork behind bleeding through. It is the documented
-   intent, not a dramatic change. --la-fill-chrome above is *not* affected by
+   intent, not a dramatic change. --lf-fill-chrome above is *not* affected by
    any of this; 02 consumes that one directly, so the override there works. */
 .mainDrawer,
 .drawer-open {
-  --la-fill-chrome: rgba(14, 16, 22, 0.66);
-  -webkit-backdrop-filter: var(--la-material-thick);
-  backdrop-filter: var(--la-material-thick);
+  --lf-fill-chrome: rgba(14, 16, 22, 0.66);
+  -webkit-backdrop-filter: var(--lf-material-thick);
+  backdrop-filter: var(--lf-material-thick);
   border-right: none;
-  box-shadow: var(--la-edge), var(--la-shadow-lg);
+  box-shadow: var(--lf-edge), var(--lf-shadow-lg);
 }
 
 .layout-desktop .mainDrawer {
-  margin: var(--la-chrome-inset);
-  border-radius: var(--la-r-xl);
-  height: calc(100% - 2 * var(--la-chrome-inset));
+  margin: var(--lf-chrome-inset);
+  border-radius: var(--lf-r-xl);
+  height: calc(100% - 2 * var(--lf-chrome-inset));
   overflow: hidden;
 }
 
@@ -464,7 +464,7 @@
 
    !important because the transform jellyfin sets is an inline style. */
 .layout-desktop .mainDrawer:not(.drawer-open) {
-  transform: translateX(calc(-1 * var(--la-chrome-inset))) !important;
+  transform: translateX(calc(-1 * var(--lf-chrome-inset))) !important;
 }
 
 .mainDrawer-scrollContainer {
@@ -478,25 +478,25 @@
   min-height: 2.9em;
   margin: 0.14em 0;
   padding: 0 0.9em;
-  border-radius: var(--la-r-md);
+  border-radius: var(--lf-r-md);
   background: transparent;
-  color: var(--la-text-dim);
+  color: var(--lf-text-dim);
   font-weight: 500;
-  letter-spacing: var(--la-tracking-tight);
+  letter-spacing: var(--lf-tracking-tight);
   transition:
-    background-color var(--la-fast) var(--la-ease-out),
-    color var(--la-fast) var(--la-ease-out),
-    transform var(--la-fast) var(--la-ease-out);
+    background-color var(--lf-fast) var(--lf-ease-out),
+    color var(--lf-fast) var(--lf-ease-out),
+    transform var(--lf-fast) var(--lf-ease-out);
 }
 
 .navMenuOption:hover {
-  background-color: var(--la-fill-hover);
-  color: var(--la-text);
+  background-color: var(--lf-fill-hover);
+  color: var(--lf-text);
 }
 
 .navMenuOption-selected {
-  background-color: var(--la-fill-active) !important;
-  box-shadow: var(--la-edge-soft);
+  background-color: var(--lf-fill-active) !important;
+  box-shadow: var(--lf-edge-soft);
   color: #fff !important;
   font-weight: 600;
 }
@@ -509,7 +509,7 @@
 }
 
 .sidebarHeader {
-  color: var(--la-text-faint);
+  color: var(--lf-text-faint);
   font-size: 0.82em;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -520,7 +520,7 @@
 .mainDrawer hr,
 .mainDrawer .navMenuDivider {
   border: none;
-  border-top: 1px solid var(--la-rim);
+  border-top: 1px solid var(--lf-rim);
   margin: 0.5em 0.6em;
 }
 
@@ -531,18 +531,18 @@
 
 .searchfields-txtSearch {
   height: 3em;
-  border-radius: var(--la-r-pill);
-  background-color: var(--la-fill-sunken);
-  -webkit-backdrop-filter: var(--la-material-thin);
-  backdrop-filter: var(--la-material-thin);
-  box-shadow: var(--la-edge-sunken);
+  border-radius: var(--lf-r-pill);
+  background-color: var(--lf-fill-sunken);
+  -webkit-backdrop-filter: var(--lf-material-thin);
+  backdrop-filter: var(--lf-material-thin);
+  box-shadow: var(--lf-edge-sunken);
   border: none;
   padding-inline: 1.1em;
-  color: var(--la-text);
+  color: var(--lf-text);
 }
 
 .searchfields-icon {
   background: transparent;
   border: none;
-  color: var(--la-text-dim);
+  color: var(--lf-text-dim);
 }

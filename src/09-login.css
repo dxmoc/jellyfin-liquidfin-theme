@@ -1,12 +1,12 @@
 /* ============================================================================
    09 — LOGIN
-   A single glass card centred on the ambient mesh. Set --la-login-bg to an
+   A single glass card centred on the ambient mesh. Set --lf-login-bg to an
    image url() in your Custom CSS to put artwork behind it — that is when the
    material earns its keep.
    ========================================================================== */
 
 :root {
-  --la-login-bg: none;
+  --lf-login-bg: none;
 }
 
 #loginPage,
@@ -19,7 +19,7 @@
   position: fixed;
   inset: 0;
   z-index: -1;
-  background-image: var(--la-login-bg);
+  background-image: var(--lf-login-bg);
   background-size: cover;
   background-position: center;
   filter: saturate(120%) brightness(0.5) blur(2px);
@@ -34,12 +34,12 @@
   margin: 3.5em auto;
   padding: 2.2em 2em;
   border: none;
-  border-radius: var(--la-r-2xl);
-  background: var(--la-fill-thick);
-  -webkit-backdrop-filter: var(--la-material-thick);
-  backdrop-filter: var(--la-material-thick);
-  box-shadow: var(--la-edge), var(--la-shadow-lg);
-  animation: la-sheet-in var(--la-spring-sheet-t) var(--la-spring-sheet) both;
+  border-radius: var(--lf-r-2xl);
+  background: var(--lf-fill-thick);
+  -webkit-backdrop-filter: var(--lf-material-thick);
+  backdrop-filter: var(--lf-material-thick);
+  box-shadow: var(--lf-edge), var(--lf-shadow-lg);
+  animation: la-sheet-in var(--lf-spring-sheet-t) var(--lf-spring-sheet) both;
 }
 
 .visualLoginForm {
@@ -50,7 +50,7 @@
 .visualLoginForm > h1 {
   font-size: 1.5em;
   font-weight: 650;
-  letter-spacing: var(--la-tracking-display);
+  letter-spacing: var(--lf-tracking-display);
   margin: 0 0 1.2em;
   text-align: center;
 }
@@ -68,7 +68,7 @@
 }
 
 #divUsers .squareCard .cardScalable {
-  border-radius: var(--la-r-xl);
+  border-radius: var(--lf-r-xl);
 }
 
 /* Not a surface here — just a wrapper around Quick Connect and the forgotten
@@ -91,7 +91,7 @@
 }
 
 #txtLoginDisclaimer {
-  color: var(--la-text-faint);
+  color: var(--lf-text-faint);
   font-size: 0.88em;
   text-align: center;
 }

@@ -12,11 +12,11 @@
 .dashboardSection,
 .serverInfo {
   border: none;
-  border-radius: var(--la-r-lg);
-  background: var(--la-fill);
-  -webkit-backdrop-filter: var(--la-material-thin);
-  backdrop-filter: var(--la-material-thin);
-  box-shadow: var(--la-edge-soft);
+  border-radius: var(--lf-r-lg);
+  background: var(--lf-fill);
+  -webkit-backdrop-filter: var(--lf-material-thin);
+  backdrop-filter: var(--lf-material-thin);
+  box-shadow: var(--lf-edge-soft);
   padding: 1.1em 1.3em;
 }
 
@@ -28,25 +28,25 @@
 
 .activeSession {
   border: none;
-  border-radius: var(--la-r-lg);
-  background: var(--la-fill);
-  -webkit-backdrop-filter: var(--la-material-thin);
-  backdrop-filter: var(--la-material-thin);
-  box-shadow: var(--la-edge-soft);
+  border-radius: var(--lf-r-lg);
+  background: var(--lf-fill);
+  -webkit-backdrop-filter: var(--lf-material-thin);
+  backdrop-filter: var(--lf-material-thin);
+  box-shadow: var(--lf-edge-soft);
   overflow: hidden;
 }
 
 .dashboardFooter {
   background: transparent;
-  border-top: 1px solid var(--la-rim);
-  color: var(--la-text-faint);
+  border-top: 1px solid var(--lf-rim);
+  color: var(--lf-text-faint);
   font-size: 0.85em;
 }
 
 .dashboardFooter::after {
-  content: "LiquidApple " var(--la-version);
+  content: "LiquidFin " var(--lf-version);
   display: block;
-  color: var(--la-text-faint);
+  color: var(--lf-text-faint);
   padding-top: 0.4em;
 }
 
@@ -58,7 +58,7 @@
    This group used to be a bare `.MuiPaper-root` with `!important`, and both of
    them are MuiPaper-root too, so it swallowed them: measured on the live
    dashboard the AppBar and the Drawer were rendering fill rgba(255,255,255,.07),
-   blur(12px) saturate(1.55), --la-edge-soft and a 22px radius — the control
+   blur(12px) saturate(1.55), --lf-edge-soft and a 22px radius — the control
    tier, verbatim from here, with a pill radius on a full-width fixed bar and a
    full-height docked drawer. That reads as "the dashboard is unthemed"; it is
    in fact themed as the wrong tier. Emotion, MUI's CSS-in-JS, is not involved:
@@ -74,14 +74,14 @@
    Chained single-argument :not() rather than :not(a, b) — the list form is
    Selectors 4 and not on the old TV webviews this theme still has to render on. */
 .MuiPaper-root:not(.MuiAppBar-root):not(.MuiDrawer-paper):not(.MuiPopover-paper) {
-  background-color: var(--la-fill) !important;
+  background-color: var(--lf-fill) !important;
   background-image: none !important;
-  -webkit-backdrop-filter: var(--la-material-thin);
-  backdrop-filter: var(--la-material-thin);
+  -webkit-backdrop-filter: var(--lf-material-thin);
+  backdrop-filter: var(--lf-material-thin);
   border: none !important;
-  border-radius: var(--la-r-lg) !important;
-  box-shadow: var(--la-edge-soft) !important;
-  color: var(--la-text) !important;
+  border-radius: var(--lf-r-lg) !important;
+  box-shadow: var(--lf-edge-soft) !important;
+  color: var(--lf-text) !important;
 }
 
 /* --- MUI menus -----------------------------------------------------------
@@ -100,9 +100,9 @@
    drawn on the same 1px edge, and the two blurs stack on one surface.
 
    What actually made it read as a flat slab: the paper is MUI's scroll
-   container (`overflow: hidden auto`), so it clipped the list's --la-shadow-md
+   container (`overflow: hidden auto`), so it clipped the list's --lf-shadow-md
    away, while the paper's own box-shadow had been replaced with an inset-only
-   --la-edge-soft. The menu had no drop shadow at all.
+   --lf-edge-soft. The menu had no drop shadow at all.
 
    The paper keeps the material here, not the list, because the paper is the
    element that rounds, clips and scrolls — a long menu scrolls its list *past*
@@ -113,18 +113,18 @@
    content-surface group above. No !important needed anywhere: nothing else
    claims these properties on this element once the group excludes it. */
 .MuiPopover-paper.MuiPaper-root {
-  /* Layered, not swapped, exactly like .actionSheetContent: --la-fill-chrome is
+  /* Layered, not swapped, exactly like .actionSheetContent: --lf-fill-chrome is
      the token 99-fallbacks turns opaque for no-backdrop-filter, Reduce
      Transparency and TV, so replacing it would opt every menu out of all
-     three. --la-menu-veil is the same extra body the action sheets carry. */
-  background-color: var(--la-fill-chrome);
-  background-image: linear-gradient(var(--la-menu-veil), var(--la-menu-veil));
-  -webkit-backdrop-filter: var(--la-material);
-  backdrop-filter: var(--la-material);
+     three. --lf-menu-veil is the same extra body the action sheets carry. */
+  background-color: var(--lf-fill-chrome);
+  background-image: linear-gradient(var(--lf-menu-veil), var(--lf-menu-veil));
+  -webkit-backdrop-filter: var(--lf-material);
+  backdrop-filter: var(--lf-material);
   border: none;
-  border-radius: var(--la-r-lg);
-  box-shadow: var(--la-edge), var(--la-shadow-md);
-  color: var(--la-text);
+  border-radius: var(--lf-r-lg);
+  box-shadow: var(--lf-edge), var(--lf-shadow-md);
+  color: var(--lf-text);
 }
 
 /* Demoted to the padded <ul> it is. `.MuiList-root.MuiMenu-list` is a tier-1
@@ -142,19 +142,19 @@
 .MuiList-root > a,
 .MuiListItem-root > a,
 .MuiListItem-root > div {
-  border-radius: var(--la-r-sm);
-  color: var(--la-text);
-  transition: background-color var(--la-fast) var(--la-ease-out);
+  border-radius: var(--lf-r-sm);
+  color: var(--lf-text);
+  transition: background-color var(--lf-fast) var(--lf-ease-out);
 }
 
 .MuiMenuItem-root:hover,
 .MuiList-root > a:hover,
 .MuiListItem-root > a:hover {
-  background-color: var(--la-fill-hover);
+  background-color: var(--lf-fill-hover);
 }
 
 .Mui-selected {
-  background-color: var(--la-fill-active) !important;
+  background-color: var(--lf-fill-active) !important;
   font-weight: 600;
 }
 
@@ -163,54 +163,54 @@
 }
 
 .MuiTabs-flexContainer > .MuiButtonBase-root {
-  border-radius: var(--la-r-pill);
-  color: var(--la-text-dim);
-  font-family: var(--la-font);
+  border-radius: var(--lf-r-pill);
+  color: var(--lf-text-dim);
+  font-family: var(--lf-font);
   font-weight: 550;
   min-height: 2.4em;
   text-transform: none;
 }
 
 .MuiTabs-flexContainer > .MuiButtonBase-root.Mui-selected {
-  background-color: var(--la-accent);
-  color: var(--la-accent-text) !important;
+  background-color: var(--lf-accent);
+  color: var(--lf-accent-text) !important;
 }
 
 .MuiToggleButtonGroup-grouped {
-  border: 1px solid var(--la-rim) !important;
-  border-radius: var(--la-r-pill) !important;
-  color: var(--la-text-dim) !important;
+  border: 1px solid var(--lf-rim) !important;
+  border-radius: var(--lf-r-pill) !important;
+  color: var(--lf-text-dim) !important;
   text-transform: none;
 }
 
 .MuiToggleButtonGroup-grouped.Mui-selected {
-  background-color: var(--la-accent) !important;
-  color: var(--la-accent-text) !important;
+  background-color: var(--lf-accent) !important;
+  color: var(--lf-accent-text) !important;
 }
 
 .MuiButtonBase-root.MuiIconButton-root {
-  border-radius: var(--la-r-pill);
-  color: var(--la-text-dim);
+  border-radius: var(--lf-r-pill);
+  color: var(--lf-text-dim);
 }
 
 .MuiButtonBase-root.MuiIconButton-root:hover {
-  background-color: var(--la-fill-hover);
-  color: var(--la-text);
+  background-color: var(--lf-fill-hover);
+  color: var(--lf-text);
 }
 
 .MuiTableRow-root.MuiTableRow-head,
 .MuiTableCell-head {
   background-color: transparent !important;
-  border-bottom: 1px solid var(--la-rim) !important;
-  color: var(--la-text-faint) !important;
+  border-bottom: 1px solid var(--lf-rim) !important;
+  color: var(--lf-text-faint) !important;
   font-weight: 600;
   letter-spacing: 0.03em;
   text-transform: uppercase;
 }
 
 .MuiTableCell-root {
-  border-bottom: 1px solid var(--la-rim) !important;
-  color: var(--la-text) !important;
+  border-bottom: 1px solid var(--lf-rim) !important;
+  color: var(--lf-text) !important;
 }
 
 .MuiTableBody-root .MuiTableRow-root:nth-child(odd) {
@@ -218,8 +218,8 @@
 }
 
 .MuiAvatar-circular {
-  border-radius: var(--la-r-pill);
-  box-shadow: var(--la-edge-soft);
+  border-radius: var(--lf-r-pill);
+  box-shadow: var(--lf-edge-soft);
 }
 
 /* --- MUI palette ---------------------------------------------------------
@@ -229,16 +229,16 @@
    three take the accent instead. Error red is left alone — that one carries
    meaning rather than branding. */
 .MuiAvatar-colorDefault {
-  background-color: var(--la-fill-active) !important;
-  color: var(--la-text) !important;
+  background-color: var(--lf-fill-active) !important;
+  color: var(--lf-text) !important;
 }
 
 .MuiButton-containedPrimary,
 .MuiButton-containedInfo,
 .MuiButton-containedSuccess {
-  background-color: var(--la-accent) !important;
-  color: var(--la-accent-text) !important;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), var(--la-shadow-sm) !important;
+  background-color: var(--lf-accent) !important;
+  color: var(--lf-accent-text) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), var(--lf-shadow-sm) !important;
 }
 
 .MuiButton-containedPrimary:hover,
@@ -248,33 +248,33 @@
 }
 
 .MuiLinearProgress-root {
-  background-color: var(--la-fill-sunken) !important;
-  border-radius: var(--la-r-pill);
+  background-color: var(--lf-fill-sunken) !important;
+  border-radius: var(--lf-r-pill);
   overflow: hidden;
 }
 
 .MuiLinearProgress-bar {
-  background-color: var(--la-accent) !important;
+  background-color: var(--lf-accent) !important;
 }
 
 /* --- Metadata editor -------------------------------------------------- */
 .editorNode,
 .metadataSidebarIcon {
-  color: var(--la-text-dim);
+  color: var(--lf-text-dim);
 }
 
 .jstree-default .jstree-wholerow-clicked,
 .jstree-default .jstree-wholerow-hovered {
-  background: var(--la-fill-hover);
-  border-radius: var(--la-r-sm);
+  background: var(--lf-fill-hover);
+  border-radius: var(--lf-r-sm);
   box-shadow: none;
 }
 
 /* --- Preferences menu ------------------------------------------------- */
 #myPreferencesMenuPage .listItem {
-  border-radius: var(--la-r-md);
+  border-radius: var(--lf-r-md);
 }
 
 #myPreferencesMenuPage .listItemIcon {
-  color: var(--la-text-dim);
+  color: var(--lf-text-dim);
 }

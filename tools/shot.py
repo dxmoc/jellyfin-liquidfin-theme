@@ -7,24 +7,24 @@ build instead, so the theme can be reviewed against the real client without
 touching any server setting. Reuses the WS client from cdp.py.
 
 Environment:
-    LA_VIEWPORT=430x932   the emulated device viewport (default 1600x1400)
-    LA_SCROLL=1200        scroll this far down before capturing; a value <= 1 is
+    LF_VIEWPORT=430x932   the emulated device viewport (default 1600x1400)
+    LF_SCROLL=1200        scroll this far down before capturing; a value <= 1 is
                           read as a fraction of the page
-    LA_FULLPAGE=1         capture the whole page instead of one viewport, by
+    LF_FULLPAGE=1         capture the whole page instead of one viewport, by
                           growing the viewport to the page height first
-    LA_LANG=en-US         claim this browser language; jellyfin's display
+    LF_LANG=en-US         claim this browser language; jellyfin's display
                           language is Auto, so the client follows it
-    LA_QUALITY=88         encoder quality for .webp / .jpg output (the format
+    LF_QUALITY=88         encoder quality for .webp / .jpg output (the format
                           comes from the output file's extension)
-    LA_AUTOPLAY=1         let a probe start playback: a scripted click is not a
+    LF_AUTOPLAY=1         let a probe start playback: a scripted click is not a
                           user gesture, so chrome blocks the video otherwise
-    LA_HOVER=<selector>   move a real pointer onto the first match before
+    LF_HOVER=<selector>   move a real pointer onto the first match before
                           capturing, so :hover states render
-    LA_HOVER_WAIT=900     ms between the pointer landing and the capture. Low
+    LF_HOVER_WAIT=900     ms between the pointer landing and the capture. Low
                           values catch a transition mid-flight
-    LA_PROBE_AFTER=f.js   a second probe, run after the hover and just before
+    LF_PROBE_AFTER=f.js   a second probe, run after the hover and just before
                           the capture — the only way to measure a hover state
-    LA_MOTION=1           emulate prefers-reduced-motion: no-preference. Windows
+    LF_MOTION=1           emulate prefers-reduced-motion: no-preference. Windows
                           animations are off on this machine, so reduce is
                           otherwise always on and the motion path — springs,
                           entrances — cannot be reviewed at all
@@ -40,30 +40,30 @@ import urllib.request
 
 from cdp import CHROME, PORT, PROFILE, WS
 
-# LA_VIEWPORT=420x900 renders the mobile layout. Jellyfin picks .layout-mobile
+# LF_VIEWPORT=420x900 renders the mobile layout. Jellyfin picks .layout-mobile
 # from its own detection, so mobile:true has to be passed through as well.
-_vp = os.environ.get('LA_VIEWPORT', '1600x1400').split('x')
+_vp = os.environ.get('LF_VIEWPORT', '1600x1400').split('x')
 VIEWPORT = (int(_vp[0]), int(_vp[1]))
 MOBILE = VIEWPORT[0] < 800
-SCROLL = float(os.environ.get('LA_SCROLL', 0))
-FULLPAGE = os.environ.get('LA_FULLPAGE') not in (None, '', '0')
-MOTION = os.environ.get('LA_MOTION') not in (None, '', '0')
+SCROLL = float(os.environ.get('LF_SCROLL', 0))
+FULLPAGE = os.environ.get('LF_FULLPAGE') not in (None, '', '0')
+MOTION = os.environ.get('LF_MOTION') not in (None, '', '0')
 # The display language is a per-user setting, and this server's is set to Auto —
 # meaning jellyfin reads it off the browser. So the readme's english shots need
 # no change on the server, only a browser claiming to be english.
-LANG = os.environ.get('LA_LANG')
+LANG = os.environ.get('LF_LANG')
 # A probe that starts playback clicks the button from script, which chrome does
 # not count as a user gesture — without this the video never leaves paused.
-AUTOPLAY = os.environ.get('LA_AUTOPLAY') not in (None, '', '0')
+AUTOPLAY = os.environ.get('LF_AUTOPLAY') not in (None, '', '0')
 # Hover states could not be rendered at all before: :hover needs a real pointer,
-# which no amount of scripting inside the page can fake. LA_HOVER_WAIT is what
+# which no amount of scripting inside the page can fake. LF_HOVER_WAIT is what
 # makes a *transient* hover bug catchable — the capture lands mid-transition.
-HOVER = os.environ.get('LA_HOVER')
-HOVER_WAIT = float(os.environ.get('LA_HOVER_WAIT', 900))
+HOVER = os.environ.get('LF_HOVER')
+HOVER_WAIT = float(os.environ.get('LF_HOVER_WAIT', 900))
 # The ordinary probe runs before the pointer moves, so it can never see a hover
 # state. This one runs right before the capture, with the hover already applied.
-PROBE_AFTER = os.environ.get('LA_PROBE_AFTER')
-QUALITY = int(os.environ.get('LA_QUALITY', 88))
+PROBE_AFTER = os.environ.get('LF_PROBE_AFTER')
+QUALITY = int(os.environ.get('LF_QUALITY', 88))
 MAX_HEIGHT = 6000
 
 
@@ -73,7 +73,7 @@ def main():
     probe_file = sys.argv[4] if len(sys.argv) > 4 else None
 
     proc = subprocess.Popen(
-        # --mute-audio is not optional. LA_AUTOPLAY runs real playback, and a
+        # --mute-audio is not optional. LF_AUTOPLAY runs real playback, and a
         # headless chrome still plays it out of the speakers — reported by the
         # user mid-run on 2026-08-19, from the other side of the room.
         [CHROME, '--headless=new', '--disable-gpu', '--no-sandbox', '--no-first-run',
@@ -163,7 +163,7 @@ def main():
                 var n=0;
                 document.querySelectorAll('style,link[rel=stylesheet]').forEach(function(el){
                   var t=(el.textContent||'')+(el.href||'');
-                  if(/jsdelivr|github\\.io|ElegantFin|liquidapple|paste\\./i.test(t)){
+                  if(/jsdelivr|github\\.io|ElegantFin|liquidfin|paste\\./i.test(t)){
                     if(el.sheet) el.sheet.disabled=true;
                     el.remove(); n++;
                   }
@@ -182,7 +182,7 @@ def main():
             time.sleep(2.5)
             print('injiziert:', js("document.getElementById('la-local')?'ja':'nein'"),
                   '| tokens sichtbar:',
-                  js("getComputedStyle(document.documentElement).getPropertyValue('--la-hero-height').trim()") or '(leer)')
+                  js("getComputedStyle(document.documentElement).getPropertyValue('--lf-hero-height').trim()") or '(leer)')
 
         if probe_file:
             print(js(open(probe_file, encoding='utf-8').read()))
@@ -198,7 +198,7 @@ def main():
         def settle(walk=True):
             # The walk parks the page back at the top when it is done, so anything
             # that wants a specific scroll position has to settle first and scroll
-            # afterwards — see the LA_SCROLL branch below.
+            # afterwards — see the LF_SCROLL branch below.
             if walk:
                 for frac in (0.0, 0.25, 0.5, 0.75, 1.0, 0.5, 0.0):
                     js(f"window.scrollTo(0, document.body.scrollHeight*{frac}); 1")
@@ -232,7 +232,7 @@ def main():
             # every image was loaded. Growing the real viewport is the only way
             # the artwork below the fold actually paints — at the price of vh
             # units now resolving against the page height, so hero sizing in a
-            # LA_FULLPAGE shot is NOT to be trusted. Measure those in the
+            # LF_FULLPAGE shot is NOT to be trusted. Measure those in the
             # default one-viewport mode.
             height = min(js('document.documentElement.scrollHeight') or VIEWPORT[1],
                          MAX_HEIGHT)
@@ -258,7 +258,7 @@ def main():
             # way :hover actually matches.
             at = js("(function(){var el = document.querySelector(%s);if (!el) return null;el.scrollIntoView({block:'center'});var r = el.getBoundingClientRect();return [Math.round(r.left + r.width/2), Math.round(r.top + r.height/2)];})()" % json.dumps(HOVER))
             if not at:
-                sys.exit('LA_HOVER: nichts passt auf ' + HOVER)
+                sys.exit('LF_HOVER: nichts passt auf ' + HOVER)
             time.sleep(0.6)
             call('Input.dispatchMouseEvent',
                  {'type': 'mouseMoved', 'x': at[0], 'y': at[1], 'buttons': 0})

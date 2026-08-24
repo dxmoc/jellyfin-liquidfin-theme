@@ -25,11 +25,11 @@
 .MuiDrawer-paper,
 .MuiAppBar-root,
 .MuiList-root.MuiMenu-list {
-  background: var(--la-fill-chrome);
-  -webkit-backdrop-filter: var(--la-material);
-  backdrop-filter: var(--la-material);
+  background: var(--lf-fill-chrome);
+  -webkit-backdrop-filter: var(--lf-material);
+  backdrop-filter: var(--lf-material);
   border: none;
-  box-shadow: var(--la-edge), var(--la-shadow-md);
+  box-shadow: var(--lf-edge), var(--lf-shadow-md);
 }
 
 /* --- Tier 2: controls ----------------------------------------------------- */
@@ -53,17 +53,17 @@
 .collapseContent,
 .infoBanner,
 .listItemIcon:not(.listItemIcon-transparent) {
-  background-color: var(--la-fill);
-  -webkit-backdrop-filter: var(--la-material-thin);
-  backdrop-filter: var(--la-material-thin);
+  background-color: var(--lf-fill);
+  -webkit-backdrop-filter: var(--lf-material-thin);
+  backdrop-filter: var(--lf-material-thin);
   border: none;
-  box-shadow: var(--la-edge-soft);
-  color: var(--la-text);
+  box-shadow: var(--lf-edge-soft);
+  color: var(--lf-text);
   transition:
-    background-color var(--la-fast) var(--la-ease-out),
-    box-shadow var(--la-fast) var(--la-ease-out),
-    transform var(--la-fast) var(--la-ease-out),
-    color var(--la-fast) var(--la-ease-out);
+    background-color var(--lf-fast) var(--lf-ease-out),
+    box-shadow var(--lf-fast) var(--lf-ease-out),
+    transform var(--lf-fast) var(--lf-ease-out),
+    color var(--lf-fast) var(--lf-ease-out);
 }
 
 /* --- Edge refraction -----------------------------------------------------
@@ -87,13 +87,13 @@
     position: absolute;
     inset: 0;
     z-index: 2;
-    padding: var(--la-refract-width);
+    padding: var(--lf-refract-width);
     border-radius: inherit;
     pointer-events: none;
-    -webkit-backdrop-filter: blur(var(--la-refract-blur))
-      brightness(var(--la-refract-bright)) saturate(var(--la-refract-sat));
-    backdrop-filter: blur(var(--la-refract-blur))
-      brightness(var(--la-refract-bright)) saturate(var(--la-refract-sat));
+    -webkit-backdrop-filter: blur(var(--lf-refract-blur))
+      brightness(var(--lf-refract-bright)) saturate(var(--lf-refract-sat));
+    backdrop-filter: blur(var(--lf-refract-blur))
+      brightness(var(--lf-refract-bright)) saturate(var(--lf-refract-sat));
     -webkit-mask: linear-gradient(#000 0 0) content-box,
       linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
@@ -172,11 +172,11 @@
 .fab:hover,
 .emby-tab-button:hover,
 .alphaPickerButton:hover {
-  background-color: var(--la-fill-hover);
+  background-color: var(--lf-fill-hover);
   box-shadow:
-    inset 0 1px 0 0 var(--la-rim-hover),
-    inset 0 0 0 1px var(--la-rim-hover),
-    var(--la-shadow-sm);
+    inset 0 1px 0 0 var(--lf-rim-hover),
+    inset 0 0 0 1px var(--lf-rim-hover),
+    var(--lf-shadow-sm);
 }
 
 .emby-button:active,

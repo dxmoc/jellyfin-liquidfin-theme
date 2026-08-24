@@ -7,25 +7,25 @@
 
 /* --- Dialogs ------------------------------------------------------------- */
 .dialog:not(.dialog-fullscreen) {
-  --la-fill-chrome: var(--la-fill-dialog);
-  /* A local `--la-blur: var(--la-blur-thick)` stood here and did nothing:
-     --la-material is declared on :root, so its var() references resolve there
+  --lf-fill-chrome: var(--lf-fill-dialog);
+  /* A local `--lf-blur: var(--lf-blur-thick)` stood here and did nothing:
+     --lf-material is declared on :root, so its var() references resolve there
      and what inherits down is the finished blur(22px) saturate(155%)
-     brightness(104%). Measured on the live media-info dialog: --la-blur read
+     brightness(104%). Measured on the live media-info dialog: --lf-blur read
      44px on the element while backdrop-filter rendered blur(22px). A thicker
      filter has to be named directly.
 
      Action sheets are unaffected — they are also .dialog, but the
      `.dialog.actionSheet:not(.dialog-fullscreen)` rule below is three classes
      and turns the wrapper's filter off outright. */
-  -webkit-backdrop-filter: var(--la-material-thick);
-  backdrop-filter: var(--la-material-thick);
+  -webkit-backdrop-filter: var(--lf-material-thick);
+  backdrop-filter: var(--lf-material-thick);
   min-width: 13em;
   border: none;
-  border-radius: var(--la-r-2xl);
-  box-shadow: var(--la-edge), var(--la-shadow-lg);
+  border-radius: var(--lf-r-2xl);
+  box-shadow: var(--lf-edge), var(--lf-shadow-lg);
   overflow: hidden;
-  animation: la-sheet-in var(--la-spring-sheet-t) var(--la-spring-sheet) both;
+  animation: la-sheet-in var(--lf-spring-sheet-t) var(--lf-spring-sheet) both;
 }
 
 @keyframes la-sheet-in {
@@ -45,8 +45,8 @@
    dimming. */
 .dialogBackdropOpened {
   background: rgba(0, 0, 0, 0.45);
-  -webkit-backdrop-filter: var(--la-material-scrim);
-  backdrop-filter: var(--la-material-scrim);
+  -webkit-backdrop-filter: var(--lf-material-scrim);
+  backdrop-filter: var(--lf-material-scrim);
   opacity: 1;
 }
 
@@ -59,11 +59,11 @@
 }
 
 .formDialogHeader:not(.formDialogHeader-clear) {
-  border-bottom: 1px solid var(--la-rim);
+  border-bottom: 1px solid var(--lf-rim);
 }
 
 .formDialogFooter:not(.formDialogFooter-clear) {
-  border-top: 1px solid var(--la-rim);
+  border-top: 1px solid var(--lf-rim);
 }
 
 /* The one footer that cannot stay transparent. With the containing block put
@@ -77,7 +77,7 @@
    its footer outside .formDialogContent has nothing passing under it and stays
    flush with the pane. */
 .formDialogContent .formDialogFooter:not(.formDialogFooter-clear) {
-  background: var(--la-fill-dialog-bar);
+  background: var(--lf-fill-dialog-bar);
 }
 
 .formDialogHeaderTitle {
@@ -85,12 +85,12 @@
 }
 
 .formDialogFooter:not(.formDialogFooter-clear.formDialogFooter-flex) > .formDialogFooterItem {
-  border-radius: var(--la-r-pill);
+  border-radius: var(--lf-r-pill);
 }
 
 .collapseContent {
   border: none;
-  border-radius: var(--la-r-lg);
+  border-radius: var(--lf-r-lg);
   padding: 1em 1.2em;
 }
 
@@ -143,23 +143,23 @@
 
 /* The iOS sheet: a rounded glass card with hairline-separated rows. */
 .actionSheetContent {
-  /* Layered, not swapped: --la-fill-chrome is the token 99-fallbacks turns
+  /* Layered, not swapped: --lf-fill-chrome is the token 99-fallbacks turns
      opaque for no-backdrop-filter, Reduce Transparency and TV, so overriding
      it here would quietly opt every menu out of all three. */
-  background-color: var(--la-fill-chrome);
-  background-image: linear-gradient(var(--la-menu-veil), var(--la-menu-veil));
-  /* A local `--la-blur: var(--la-blur-thick)` is a no-op, which is what the
-     rule here used to do: --la-material is declared on :root, so its var()
+  background-color: var(--lf-fill-chrome);
+  background-image: linear-gradient(var(--lf-menu-veil), var(--lf-menu-veil));
+  /* A local `--lf-blur: var(--lf-blur-thick)` is a no-op, which is what the
+     rule here used to do: --lf-material is declared on :root, so its var()
      references are resolved *there* and what inherits down is already the
      finished blur(22px) saturate(155%) brightness(104%). Measured 22px where
      44px was asked for. A thicker filter has to be named directly. */
-  -webkit-backdrop-filter: var(--la-material-thick);
-  backdrop-filter: var(--la-material-thick);
+  -webkit-backdrop-filter: var(--lf-material-thick);
+  backdrop-filter: var(--lf-material-thick);
   padding: 0.4em !important;
   border: none;
   /* Concentric: 22px pane − 0.4em padding ≈ the 16px rows inside it. */
-  border-radius: var(--la-r-lg);
-  box-shadow: var(--la-edge), var(--la-shadow-lg);
+  border-radius: var(--lf-r-lg);
+  box-shadow: var(--lf-edge), var(--lf-shadow-lg);
   overflow: hidden;
   position: relative;
 }
@@ -167,7 +167,7 @@
 .actionSheetContent > h1,
 .actionSheetContent > .actionSheetTitle {
   margin: 0;
-  color: var(--la-text-faint);
+  color: var(--lf-text-faint);
   font-size: 0.86em;
   font-weight: 600;
   padding: 0.7em 1em 0.5em;
@@ -179,23 +179,23 @@
   margin: 0.08em 0;
   padding: 0 1em !important;
   border: none;
-  border-radius: var(--la-r-md);
+  border-radius: var(--lf-r-md);
   background: transparent;
-  color: var(--la-text);
+  color: var(--lf-text);
   font-weight: 500;
-  transition: background-color var(--la-fast) var(--la-ease-out);
+  transition: background-color var(--lf-fast) var(--lf-ease-out);
 }
 
 .actionSheetMenuItem:hover,
 .actionSheetMenuItem:focus-visible {
-  background-color: var(--la-fill-hover);
+  background-color: var(--lf-fill-hover);
 }
 
 /* A menu row lights up, it does not shrink. Overrides the shared
    `.emby-button:active { transform: scale(.96) }` from 02-material — same
    specificity, later file. */
 .actionSheetMenuItem:active {
-  background-color: var(--la-fill-active);
+  background-color: var(--lf-fill-active);
   transform: none;
 }
 
@@ -212,7 +212,7 @@
    with the label it belongs to. */
 .actionSheetMenuItem .listItemAside,
 .actionSheetMenuItem .actionSheetItemAsideText {
-  color: var(--la-text-dim);
+  color: var(--lf-text-dim);
   font-weight: 450;
 }
 
@@ -221,25 +221,25 @@
    thanks to the `color: inherit` above. On its own this rule reddened the
    icon and left the label white (measured). */
 .actionSheetMenuItem[data-id="delete"] {
-  color: var(--la-danger);
+  color: var(--lf-danger);
 }
 
 /* The pickers put a check on every row and hide the inactive ones with an
    inline visibility, so tinting all of them is safe and gives :has-less
    webviews the accent tick without any fallback query. */
 .actionSheetMenuItem .listItemIcon.check {
-  color: var(--la-accent);
+  color: var(--lf-accent);
 }
 
 .actionSheetMenuItem:has(.listItemIcon.check:not([style*="hidden"])) {
-  background-color: var(--la-fill);
+  background-color: var(--lf-fill);
   font-weight: 600;
 }
 
 /* Without this the hover fill (0.13) is brighter than the selected fill
    (0.07) and pointing at a row looks like selecting it. */
 .actionSheetMenuItem:has(.listItemIcon.check:not([style*="hidden"])):hover {
-  background-color: var(--la-fill-active);
+  background-color: var(--lf-fill-active);
 }
 
 /* jellyfin paints the divider as a filled 1px block; the theme draws it as a
@@ -248,7 +248,7 @@
   height: 0;
   background: transparent;
   border: none;
-  border-top: 1px solid var(--la-rim);
+  border-top: 1px solid var(--lf-rim);
   margin: 0.4em 0.7em;
 }
 
@@ -256,10 +256,10 @@
 .toast,
 .upNextContainer {
   border: none;
-  border-radius: var(--la-r-xl);
-  box-shadow: var(--la-edge), var(--la-shadow-lg);
+  border-radius: var(--lf-r-xl);
+  box-shadow: var(--lf-edge), var(--lf-shadow-lg);
   padding: 0.9em 1.3em;
-  animation: la-sheet-in var(--la-spring-sheet-t) var(--la-spring-sheet) both;
+  animation: la-sheet-in var(--lf-spring-sheet-t) var(--lf-spring-sheet) both;
 }
 
 /* …and the entrance above has to let go again, which it does not do on its own.
@@ -288,22 +288,22 @@
 
 /* The only control in the theme that overrides its own tier's fill. It floats
    on the picture itself, so the tier-2 white fill made it flare on bright
-   frames; --la-fill-skip is dark instead. Everything else about the tier — the
+   frames; --lf-fill-skip is dark instead. Everything else about the tier — the
    thin material, the rim, the transitions — is kept from 02. */
 .skip-button {
-  background-color: var(--la-fill-skip);
+  background-color: var(--lf-fill-skip);
   border: none;
-  border-radius: var(--la-r-pill);
+  border-radius: var(--lf-r-pill);
   padding: 0.6em 1.3em;
   font-weight: 600;
 }
 
 .skip-button:hover {
-  background-color: var(--la-fill-skip-hover);
+  background-color: var(--lf-fill-skip-hover);
   box-shadow:
-    inset 0 1px 0 0 var(--la-rim-hover),
-    inset 0 0 0 1px var(--la-rim-hover),
-    var(--la-shadow-sm);
+    inset 0 1px 0 0 var(--lf-rim-hover),
+    inset 0 0 0 1px var(--lf-rim-hover),
+    var(--lf-shadow-sm);
 }
 
 /* --- Lists ------------------------------------------------------------- */
@@ -311,7 +311,7 @@
 .readOnlyContent,
 .itemsContainer.vertical-list {
   border: none;
-  border-radius: var(--la-r-lg);
+  border-radius: var(--lf-r-lg);
   overflow: hidden;
 }
 
@@ -319,24 +319,24 @@
   min-height: 3.4em;
   margin: 0.1em 0;
   border: none;
-  border-radius: var(--la-r-md);
+  border-radius: var(--lf-r-md);
   background: transparent;
   transition:
-    background-color var(--la-fast) var(--la-ease-out),
-    transform var(--la-fast) var(--la-ease-out);
+    background-color var(--lf-fast) var(--lf-ease-out),
+    transform var(--lf-fast) var(--lf-ease-out);
 }
 
 .listItem:not(.actionSheetMenuItem):not(.navMenuOption):hover {
-  background-color: var(--la-fill-hover);
+  background-color: var(--lf-fill-hover);
 }
 
 .listItem-border {
-  border-bottom: 1px solid var(--la-rim);
+  border-bottom: 1px solid var(--lf-rim);
 }
 
 .listItemImage {
-  border-radius: var(--la-r-sm);
-  box-shadow: var(--la-edge-soft), var(--la-shadow-sm);
+  border-radius: var(--lf-r-sm);
+  box-shadow: var(--lf-edge-soft), var(--lf-shadow-sm);
 }
 
 /* Action-sheet rows are excluded: their label sits in a .listItemBody too, and
@@ -344,22 +344,22 @@
    trying to say — the red on a destructive action, the heavier weight on the
    selected track. Left out, the label simply inherits from the row. */
 .listItemBody > .listItemBodyText:not(.secondary):not(.actionSheetItemText) {
-  color: var(--la-text);
+  color: var(--lf-text);
   font-weight: 550;
 }
 
 .listItemBodyText.secondary {
-  color: var(--la-text-dim);
+  color: var(--lf-text-dim);
   font-weight: 450;
 }
 
 .listItemIcon:not(.listItemIcon-transparent) {
-  border-radius: var(--la-r-sm);
-  color: var(--la-text-dim);
+  border-radius: var(--lf-r-sm);
+  color: var(--lf-text-dim);
 }
 
 .vertical-list > .listGroupHeader {
-  color: var(--la-text-faint);
+  color: var(--lf-text-faint);
   font-size: 0.85em;
   font-weight: 600;
   letter-spacing: 0.03em;
@@ -369,12 +369,12 @@
 
 /* --- Selection mode -------------------------------------------------- */
 .selectionCommandsPanel {
-  --la-fill-chrome: rgba(22, 24, 32, 0.7);
-  background: var(--la-fill-chrome);
-  -webkit-backdrop-filter: var(--la-material);
-  backdrop-filter: var(--la-material);
+  --lf-fill-chrome: rgba(22, 24, 32, 0.7);
+  background: var(--lf-fill-chrome);
+  -webkit-backdrop-filter: var(--lf-material);
+  backdrop-filter: var(--lf-material);
   border: none;
-  box-shadow: var(--la-edge), var(--la-shadow-md);
+  box-shadow: var(--lf-edge), var(--lf-shadow-md);
 }
 
 .itemSelectionPanel {
@@ -385,14 +385,14 @@
 /* --- Messages -------------------------------------------------------- */
 .centerMessage,
 .noItemsMessage {
-  color: var(--la-text-dim);
+  color: var(--lf-text-dim);
 }
 
 .infoBanner {
   border: none;
-  border-radius: var(--la-r-lg);
+  border-radius: var(--lf-r-lg);
   padding: 0.9em 1.2em;
-  color: var(--la-text);
+  color: var(--lf-text);
 }
 
 /* --- Tables --------------------------------------------------------- */
@@ -403,8 +403,8 @@ table:not(.MuiTable-root.MuiTable-stickyHeader) {
 
 .detailTableHeaderCell {
   background: transparent;
-  border-bottom: 1px solid var(--la-rim);
-  color: var(--la-text-faint);
+  border-bottom: 1px solid var(--lf-rim);
+  color: var(--lf-text-faint);
   font-size: 0.85em;
   font-weight: 600;
   letter-spacing: 0.03em;

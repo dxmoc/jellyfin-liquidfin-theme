@@ -6,9 +6,9 @@
 
 .emby-button {
   gap: 1ch;
-  font-family: var(--la-font);
+  font-family: var(--lf-font);
   font-weight: 550;
-  letter-spacing: var(--la-tracking-tight);
+  letter-spacing: var(--lf-tracking-tight);
   text-transform: none;
 }
 
@@ -21,14 +21,14 @@
   min-height: 2.9em;
   padding: 0.55em 1.4em;
   border: none;
-  border-radius: var(--la-r-pill);
-  color: var(--la-text);
+  border-radius: var(--lf-r-pill);
+  color: var(--lf-text);
 }
 
 .fab {
   border: none;
-  border-radius: var(--la-r-pill);
-  box-shadow: var(--la-edge-soft), var(--la-shadow-md);
+  border-radius: var(--lf-r-pill);
+  box-shadow: var(--lf-edge-soft), var(--lf-shadow-md);
 }
 
 /* The one filled action per screen.
@@ -39,14 +39,14 @@
 .button-submit.raised,
 .button-submit.block,
 .btnHeaderSave.button-flat {
-  background: var(--la-accent);
+  background: var(--lf-accent);
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
   border: none;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.55),
-    var(--la-shadow-sm);
-  color: var(--la-accent-text);
+    var(--lf-shadow-sm);
+  color: var(--lf-accent-text);
   font-weight: 650;
 }
 
@@ -57,8 +57,8 @@
   filter: brightness(1.08);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.55),
-    var(--la-shadow-md),
-    0 0 20px var(--la-accent-glow);
+    var(--lf-shadow-md),
+    0 0 20px var(--lf-accent-glow);
 }
 
 #btnDeleteImage,
@@ -68,14 +68,14 @@
   /* Static first, color-mix second: older TV webviews drop the line they
      cannot parse and keep the literal. */
   background: rgba(255, 69, 58, 0.34);
-  background: color-mix(in srgb, var(--la-danger) 34%, transparent);
-  -webkit-backdrop-filter: var(--la-material-thin);
-  backdrop-filter: var(--la-material-thin);
+  background: color-mix(in srgb, var(--lf-danger) 34%, transparent);
+  -webkit-backdrop-filter: var(--lf-material-thin);
+  backdrop-filter: var(--lf-material-thin);
   border: none;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
     inset 0 0 0 1px rgba(255, 69, 58, 0.7);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 0 0 1px color-mix(in srgb, var(--la-danger) 70%, transparent);
+    inset 0 0 0 1px color-mix(in srgb, var(--lf-danger) 70%, transparent);
   color: #ffd0cc;
 }
 
@@ -84,13 +84,13 @@
 .btnRevoke:hover,
 .button-delete:hover {
   background: rgba(255, 69, 58, 0.4);
-  background: color-mix(in srgb, var(--la-danger) 40%, transparent);
+  background: color-mix(in srgb, var(--lf-danger) 40%, transparent);
   color: #fff;
 }
 
 .button-flat:hover {
-  background-color: var(--la-fill-hover);
-  border-radius: var(--la-r-pill);
+  background-color: var(--lf-fill-hover);
+  border-radius: var(--lf-r-pill);
 }
 
 /* --- Fields --------------------------------------------------------------
@@ -104,14 +104,14 @@
   min-height: 2.9em;
   padding: 0.65em 0.95em !important;
   border: none;
-  border-radius: var(--la-r-md);
-  background-color: var(--la-fill-sunken);
-  box-shadow: var(--la-well), inset 0 0 0 1px var(--la-rim);
-  color: var(--la-text);
-  font-family: var(--la-font);
+  border-radius: var(--lf-r-md);
+  background-color: var(--lf-fill-sunken);
+  box-shadow: var(--lf-well), inset 0 0 0 1px var(--lf-rim);
+  color: var(--lf-text);
+  font-family: var(--lf-font);
   transition:
-    box-shadow var(--la-fast) var(--la-ease-out),
-    background-color var(--la-fast) var(--la-ease-out);
+    box-shadow var(--lf-fast) var(--lf-ease-out),
+    background-color var(--lf-fast) var(--lf-ease-out);
 }
 
 .customCssContainer textarea,
@@ -122,7 +122,7 @@
 .emby-input:hover:not(:focus),
 .emby-textarea:hover:not(:focus),
 .emby-select-withcolor:hover:not(.emby-select[disabled], :focus) {
-  box-shadow: var(--la-well), inset 0 0 0 1px var(--la-rim-hover);
+  box-shadow: var(--lf-well), inset 0 0 0 1px var(--lf-rim-hover);
 }
 
 /* 01-base's focus ring carves fields out by name, so they have to bring their
@@ -143,8 +143,8 @@
 select.emby-select:focus,
 select.emby-select-withcolor:focus,
 .emby-select.emby-select-withcolor:focus {
-  background-color: var(--la-fill-sunken);
-  box-shadow: var(--la-well), var(--la-focus-ring);
+  background-color: var(--lf-fill-sunken);
+  box-shadow: var(--lf-well), var(--lf-focus-ring);
   outline: none;
 }
 
@@ -154,11 +154,11 @@ select.emby-select-withcolor:focus,
 select.emby-select,
 select.emby-select-withcolor,
 .emby-select.emby-select-withcolor {
-  background-color: var(--la-fill-sunken) !important;
+  background-color: var(--lf-fill-sunken) !important;
   border: none !important;
-  border-radius: var(--la-r-md);
-  color: var(--la-text);
-  box-shadow: var(--la-well), inset 0 0 0 1px var(--la-rim);
+  border-radius: var(--lf-r-md);
+  color: var(--lf-text);
+  box-shadow: var(--lf-well), inset 0 0 0 1px var(--lf-rim);
 }
 
 .emby-select,
@@ -185,7 +185,7 @@ select {
   backdrop-filter: none !important;
   display: flex;
   align-items: center;
-  color: var(--la-text-dim);
+  color: var(--lf-text-dim);
   pointer-events: none;
 }
 
@@ -199,8 +199,8 @@ select {
 }
 
 .emby-select-withcolor > option {
-  background-color: var(--la-ground-raised);
-  color: var(--la-text);
+  background-color: var(--lf-ground-raised);
+  color: var(--lf-text);
 }
 
 .inputLabel,
@@ -209,7 +209,7 @@ select {
 .inputLabelFocused,
 .selectLabelFocused,
 .textareaLabelFocused {
-  color: var(--la-text-faint);
+  color: var(--lf-text-faint);
   font-size: 0.85em;
   font-weight: 550;
 }
@@ -217,7 +217,7 @@ select {
 .inputLabelFocused,
 .selectLabelFocused,
 .textareaLabelFocused {
-  color: var(--la-text);
+  color: var(--lf-text);
 }
 
 .selectArrowContainer,
@@ -225,24 +225,24 @@ select {
   background: transparent;
   border: none;
   box-shadow: none;
-  color: var(--la-text-dim);
+  color: var(--lf-text-dim);
 }
 
 .inputContainer .emby-input-iconbutton {
   background: transparent;
   border: none;
-  border-radius: var(--la-r-pill);
-  color: var(--la-text-dim);
+  border-radius: var(--lf-r-pill);
+  color: var(--lf-text-dim);
 }
 
 .inputContainer .emby-input-iconbutton:hover {
-  background-color: var(--la-fill-hover);
-  color: var(--la-text);
+  background-color: var(--lf-fill-hover);
+  color: var(--lf-text);
 }
 
 fieldset {
-  border: 1px solid var(--la-rim);
-  border-radius: var(--la-r-lg);
+  border: 1px solid var(--lf-rim);
+  border-radius: var(--lf-r-lg);
   padding: 1em 1.2em;
 }
 
@@ -250,48 +250,48 @@ fieldset {
    iOS shape: a small rounded square, filled with the accent when checked. */
 .checkboxOutline {
   border: none;
-  border-radius: var(--la-r-xs);
+  border-radius: var(--lf-r-xs);
   /* Named rather than `all`: this box changes fill and rim, and `all` also put
      a 160ms transition on the border-radius and the backdrop-filter of the
      multi-select variant below, both of which only ever animate on a class
      swap nobody sees. */
   transition:
-    background-color var(--la-fast) var(--la-ease-out),
-    box-shadow var(--la-fast) var(--la-ease-out);
+    background-color var(--lf-fast) var(--lf-ease-out),
+    box-shadow var(--lf-fast) var(--lf-ease-out);
 }
 
 .checkboxOutline:not(.multiSelectCheckboxOutline) {
-  background-color: var(--la-fill-sunken);
-  box-shadow: var(--la-well), inset 0 0 0 1px var(--la-rim);
+  background-color: var(--lf-fill-sunken);
+  box-shadow: var(--lf-well), inset 0 0 0 1px var(--lf-rim);
 }
 
 .checkboxContainer:hover .checkboxOutline:not(.multiSelectCheckboxOutline) {
-  box-shadow: var(--la-well), inset 0 0 0 1px var(--la-rim-hover);
+  box-shadow: var(--lf-well), inset 0 0 0 1px var(--lf-rim-hover);
 }
 
 .emby-checkbox:checked + span + .checkboxOutline:not(.multiSelectCheckboxOutline) {
-  background-color: var(--la-accent);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), var(--la-shadow-sm);
+  background-color: var(--lf-accent);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), var(--lf-shadow-sm);
 }
 
 .emby-checkbox:checked + span + .checkboxOutline .checkboxIcon {
-  color: var(--la-accent-text);
+  color: var(--lf-accent-text);
 }
 
 /* Same material as a card's indicator chips — it is the same thing, a small
    pane floating on artwork — so it reads the same tokens and dies with them on
    TV. It used to carry the recipe as a literal and survived every fallback. */
 .checkboxOutline.multiSelectCheckboxOutline {
-  background-color: var(--la-fill-chip);
-  -webkit-backdrop-filter: var(--la-material-chip);
-  backdrop-filter: var(--la-material-chip);
-  border-radius: var(--la-r-pill);
-  box-shadow: var(--la-edge-soft);
+  background-color: var(--lf-fill-chip);
+  -webkit-backdrop-filter: var(--lf-material-chip);
+  backdrop-filter: var(--lf-material-chip);
+  border-radius: var(--lf-r-pill);
+  box-shadow: var(--lf-edge-soft);
 }
 
 .checkboxContainer .emby-checkbox:checked + span + .checkboxOutline.multiSelectCheckboxOutline {
-  background-color: var(--la-accent);
-  color: var(--la-accent-text);
+  background-color: var(--lf-accent);
+  color: var(--lf-accent-text);
 }
 
 /* Jellyfin's checkbox is a 1x1px <input> parked next to the box you can see, so
@@ -305,16 +305,16 @@ input.emby-checkbox:focus-visible:not(.emby-input):not(.emby-textarea):not(.emby
 }
 
 .emby-checkbox:focus + span + .checkboxOutline {
-  box-shadow: var(--la-focus-ring);
+  box-shadow: var(--lf-focus-ring);
 }
 
 /* --- Radios ------------------------------------------------------------ */
 .mdl-radio__outer-circle {
-  border-color: var(--la-rim-hover);
+  border-color: var(--lf-rim-hover);
 }
 
 .mdl-radio__inner-circle {
-  background: var(--la-accent);
+  background: var(--lf-accent);
 }
 
 /* --- Sliders ----------------------------------------------------------- */
@@ -327,12 +327,12 @@ input.emby-checkbox:focus-visible:not(.emby-input):not(.emby-textarea):not(.emby
 .mdl-slider-background-flex {
   height: 0.32em;
   margin-top: -0.16em;
-  border-radius: var(--la-r-pill);
-  background: var(--la-track);
+  border-radius: var(--lf-r-pill);
+  background: var(--lf-track);
   overflow: hidden;
   transition:
-    height var(--la-fast) var(--la-ease-out),
-    margin-top var(--la-fast) var(--la-ease-out);
+    height var(--lf-fast) var(--lf-ease-out),
+    margin-top var(--lf-fast) var(--lf-ease-out);
 }
 
 .sliderContainer:hover .mdl-slider-background-flex,
@@ -342,8 +342,8 @@ input.emby-checkbox:focus-visible:not(.emby-input):not(.emby-textarea):not(.emby
 }
 
 .mdl-slider-background-lower {
-  background: var(--la-accent);
-  border-radius: var(--la-r-pill);
+  background: var(--lf-accent);
+  border-radius: var(--lf-r-pill);
 }
 
 /* Stays empty by default. Jellyfin only writes buffered ranges into this
@@ -358,17 +358,17 @@ input.emby-checkbox:focus-visible:not(.emby-input):not(.emby-textarea):not(.emby
   width: 0.95em !important;
   height: 0.95em !important;
   border: none;
-  border-radius: var(--la-r-pill);
+  border-radius: var(--lf-r-pill);
   background: #fff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  transition: transform var(--la-fast) var(--la-ease-out);
+  transition: transform var(--lf-fast) var(--lf-ease-out);
 }
 
 .mdl-slider::-moz-range-thumb {
   width: 0.95em;
   height: 0.95em;
   border: none;
-  border-radius: var(--la-r-pill);
+  border-radius: var(--lf-r-pill);
   background: #fff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
@@ -380,45 +380,45 @@ input.emby-checkbox:focus-visible:not(.emby-input):not(.emby-textarea):not(.emby
 
 .sliderBubble {
   padding: 0.35em 0.6em;
-  border-radius: var(--la-r-sm);
-  box-shadow: var(--la-edge-soft), var(--la-shadow-md);
+  border-radius: var(--lf-r-sm);
+  box-shadow: var(--lf-edge-soft), var(--lf-shadow-md);
 }
 
 .sliderMarker {
-  background: var(--la-text-faint);
+  background: var(--lf-text-faint);
 }
 
 .sliderMarker.watched {
-  background: var(--la-accent);
+  background: var(--lf-accent);
 }
 
 /* --- Progress ---------------------------------------------------------- */
 progress,
 ::-webkit-progress-bar {
   height: 0.5em;
-  border-radius: var(--la-r-pill);
-  background: var(--la-fill-sunken);
+  border-radius: var(--lf-r-pill);
+  background: var(--lf-fill-sunken);
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
   overflow: hidden;
 }
 
 ::-webkit-progress-value {
-  background: var(--la-accent);
-  border-radius: var(--la-r-pill);
+  background: var(--lf-accent);
+  border-radius: var(--lf-r-pill);
 }
 
 ::-moz-progress-bar {
-  background: var(--la-accent);
-  border-radius: var(--la-r-pill);
+  background: var(--lf-accent);
+  border-radius: var(--lf-r-pill);
 }
 
 .mdl-spinner__circle {
-  border-color: var(--la-accent);
+  border-color: var(--lf-accent);
 }
 
 /* --- Alpha picker ------------------------------------------------------ */
 .alphaPicker-vertical {
-  border-radius: var(--la-r-pill);
+  border-radius: var(--lf-r-pill);
   padding: 0.4em 0.2em;
 }
 
@@ -429,7 +429,7 @@ progress,
    percentage still wins on desktop, where it is far larger. */
 .itemsContainer.padded-right-withalphapicker {
   padding-right: 7.5%; /* jellyfin's own value, for browsers without max() */
-  padding-right: max(7.5%, var(--la-alphapicker-clear));
+  padding-right: max(7.5%, var(--lf-alphapicker-clear));
 }
 
 .alphaPickerButton {
@@ -437,22 +437,22 @@ progress,
   height: 1.9em;
   margin: 0.05em 0;
   border: none;
-  border-radius: var(--la-r-pill);
+  border-radius: var(--lf-r-pill);
   background: transparent;
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
   box-shadow: none;
-  color: var(--la-text-faint);
+  color: var(--lf-text-faint);
   font-weight: 600;
 }
 
 .alphaPickerButton:hover {
-  background-color: var(--la-fill-hover);
+  background-color: var(--lf-fill-hover);
   box-shadow: none;
-  color: var(--la-text);
+  color: var(--lf-text);
 }
 
 .alphaPickerButton-selected {
-  background-color: var(--la-accent);
-  color: var(--la-accent-text);
+  background-color: var(--lf-accent);
+  color: var(--lf-accent-text);
 }

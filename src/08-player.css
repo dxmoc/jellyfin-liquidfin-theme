@@ -7,14 +7,14 @@
 
 /* --- Video OSD ---------------------------------------------------------- */
 .videoOsdBottom.videoOsdBottom-maincontrols {
-  --la-fill-chrome: rgba(18, 20, 26, 0.5);
+  --lf-fill-chrome: rgba(18, 20, 26, 0.5);
   margin: 0 0.7em 0.7em;
   padding: 0.6em 1.2em 0.9em;
   border: none;
-  border-radius: var(--la-r-2xl);
-  box-shadow: var(--la-edge), var(--la-shadow-lg);
-  transition: opacity var(--la-normal) var(--la-ease),
-    transform var(--la-normal) var(--la-ease);
+  border-radius: var(--lf-r-2xl);
+  box-shadow: var(--lf-edge), var(--lf-shadow-lg);
+  transition: opacity var(--lf-normal) var(--lf-ease),
+    transform var(--lf-normal) var(--lf-ease);
 }
 
 .skinHeader.osdHeader {
@@ -79,11 +79,11 @@
 .osdTitle,
 .videoOsdBottom .osdTitle {
   font-weight: 650;
-  letter-spacing: var(--la-tracking-display);
+  letter-spacing: var(--lf-tracking-display);
 }
 
 .videoOsdBottom .paper-icon-button-light {
-  border-radius: var(--la-r-pill);
+  border-radius: var(--lf-r-pill);
 }
 
 /* The card overlay material, because it is the same object: a small bright
@@ -92,18 +92,18 @@
    the reach of every fallback in 99. */
 .videoOsdBottom.videoOsdBottom-maincontrols .btnPause,
 .videoOsdBottom.videoOsdBottom-maincontrols .btnPlayPause {
-  background: var(--la-fill-overlay);
-  -webkit-backdrop-filter: var(--la-material-overlay);
-  backdrop-filter: var(--la-material-overlay);
-  border-radius: var(--la-r-pill);
-  box-shadow: var(--la-edge-soft);
+  background: var(--lf-fill-overlay);
+  -webkit-backdrop-filter: var(--lf-material-overlay);
+  backdrop-filter: var(--lf-material-overlay);
+  border-radius: var(--lf-r-pill);
+  box-shadow: var(--lf-edge-soft);
   color: #fff;
 }
 
 .videoOsdBottom.videoOsdBottom-maincontrols .btnPause:hover,
 .videoOsdBottom.videoOsdBottom-maincontrols .btnPlayPause:hover {
-  background: var(--la-accent);
-  color: var(--la-accent-text);
+  background: var(--lf-accent);
+  color: var(--lf-accent-text);
 }
 
 /* --- Der Pause-Knopf ringt sich beim Aufblenden selbst ------------------
@@ -114,7 +114,7 @@
    als :focus-visible. Live gemessen, ohne dass irgendetwas geklickt wurde:
 
      active: BUTTON.btnPause | :focus=true :focus-visible=true :hover=false
-     box-shadow: shade 2px, #fff 4px, shade 5px   <- --la-focus-ring
+     box-shadow: shade 2px, #fff 4px, shade 5px   <- --lf-focus-ring
 
    Deshalb erscheint der Ring bei jedem Weg, der das OSD hochholt: Pause, Klick
    in die Bildmitte, Mausbewegung. Dieselbe Falle wie bei den Karten in
@@ -127,16 +127,16 @@
    Basisregel damit genau; gewonnen wird ueber die Dateireihenfolge. */
 :root:not(.layout-tv) .videoOsdBottom.videoOsdBottom-maincontrols .btnPause:focus-visible,
 :root:not(.layout-tv) .videoOsdBottom.videoOsdBottom-maincontrols .btnPlayPause:focus-visible {
-  box-shadow: var(--la-edge-soft);
+  box-shadow: var(--lf-edge-soft);
 }
 
 .osdPoster img {
-  border-radius: var(--la-r-md);
-  box-shadow: var(--la-edge-soft), var(--la-shadow-md);
+  border-radius: var(--lf-r-md);
+  box-shadow: var(--lf-edge-soft), var(--lf-shadow-md);
 }
 
 .iconOsd {
-  border-radius: var(--la-r-lg);
+  border-radius: var(--lf-r-lg);
 }
 
 /* The wrapper carries the material, the block inside only positions — the same
@@ -147,7 +147,7 @@
    made the panel almost opaque, which is the flat look this theme is trying to
    avoid. `overflow: hidden` keeps anything else inside the rounding. */
 .playerStats {
-  border-radius: var(--la-r-lg);
+  border-radius: var(--lf-r-lg);
   overflow: hidden;
 }
 
@@ -156,8 +156,8 @@
 }
 
 .iconOsdProgressInner {
-  background: var(--la-accent);
-  border-radius: var(--la-r-pill);
+  background: var(--lf-accent);
+  border-radius: var(--lf-r-pill);
 }
 
 /* --- How far ahead it has loaded ----------------------------------------
@@ -181,45 +181,45 @@
    `.mdl-slider-background-lower` comes later in the DOM and therefore paints on
    top: played over buffered, no z-index needed. */
 .osdPositionSlider ~ .mdl-slider-background-flex-container .mdl-slider-background-upper {
-  background: var(--la-track-buffered);
-  border-radius: var(--la-r-pill);
+  background: var(--lf-track-buffered);
+  border-radius: var(--lf-r-pill);
 }
 
 .positionTime,
 .startTimeText,
 .endTimeText,
 .runtime {
-  color: var(--la-text-dim);
+  color: var(--lf-text-dim);
   font-variant-numeric: tabular-nums;
   font-weight: 500;
 }
 
 /* --- Now playing bar -------------------------------------------------- */
 .nowPlayingBar {
-  --la-fill-chrome: rgba(18, 20, 26, 0.58);
+  --lf-fill-chrome: rgba(18, 20, 26, 0.58);
   border: none;
-  box-shadow: var(--la-edge), var(--la-shadow-lg);
+  box-shadow: var(--lf-edge), var(--lf-shadow-lg);
 }
 
 .layout-desktop .nowPlayingBar {
   margin: 0 0.55em 0.55em;
   width: calc(100% - 1.1em);
-  border-radius: var(--la-r-xl);
+  border-radius: var(--lf-r-xl);
   overflow: hidden;
 }
 
 .nowPlayingBar .nowPlayingImage img,
 .nowPlayingBar .nowPlayingImage {
-  border-radius: var(--la-r-sm);
-  box-shadow: var(--la-edge-soft), var(--la-shadow-sm);
+  border-radius: var(--lf-r-sm);
+  box-shadow: var(--lf-edge-soft), var(--lf-shadow-sm);
 }
 
 .nowPlayingBar .playPauseButton,
 .nowPlayingInfoContainer .btnPlayPause {
-  background: var(--la-accent);
-  border-radius: var(--la-r-pill);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), var(--la-shadow-sm);
-  color: var(--la-accent-text);
+  background: var(--lf-accent);
+  border-radius: var(--lf-r-pill);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), var(--lf-shadow-sm);
+  color: var(--lf-accent-text);
 }
 
 .nowPlayingBarPositionContainer {
@@ -233,21 +233,21 @@
 }
 
 .nowPlayingPageImage {
-  border-radius: var(--la-r-2xl);
-  box-shadow: var(--la-edge-soft), var(--la-shadow-lg);
+  border-radius: var(--lf-r-2xl);
+  box-shadow: var(--lf-edge-soft), var(--lf-shadow-lg);
 }
 
 .nowPlayingSongName,
 .nowPlayingSongName.nowPlayingEpisode {
   font-weight: 650;
-  letter-spacing: var(--la-tracking-display);
+  letter-spacing: var(--lf-tracking-display);
 }
 
 .nowPlayingArtist,
 .nowPlayingAlbum,
 .nowPlayingArtist.nowPlayingSerie,
 .nowPlayingAlbum.nowPlayingSeason {
-  color: var(--la-text-dim);
+  color: var(--lf-text-dim);
   font-weight: 450;
 }
 
@@ -256,7 +256,7 @@
 }
 
 .buttonActive {
-  color: var(--la-accent) !important;
+  color: var(--lf-accent) !important;
 }
 
 /* --- Lyrics ---------------------------------------------------------- */
@@ -265,26 +265,26 @@
 }
 
 .lyricsLine {
-  border-radius: var(--la-r-md);
+  border-radius: var(--lf-r-md);
   font-weight: 600;
-  letter-spacing: var(--la-tracking-display);
-  transition: color var(--la-normal) var(--la-ease),
-    opacity var(--la-normal) var(--la-ease),
-    filter var(--la-normal) var(--la-ease);
+  letter-spacing: var(--lf-tracking-display);
+  transition: color var(--lf-normal) var(--lf-ease),
+    opacity var(--lf-normal) var(--lf-ease),
+    filter var(--lf-normal) var(--lf-ease);
 }
 
 .futureLyric,
 .pastLyric {
-  color: var(--la-text-faint);
+  color: var(--lf-text-faint);
   filter: blur(1px);
   opacity: 0.7;
 }
 
 /* --- Chapters -------------------------------------------------------- */
 .chapterCardImageContainer {
-  border-radius: var(--la-r-md);
+  border-radius: var(--lf-r-md);
 }
 
 #scenesContent .cardScalable:hover {
-  transform: translateY(var(--la-lift)) scale(1.02);
+  transform: translateY(var(--lf-lift)) scale(1.02);
 }

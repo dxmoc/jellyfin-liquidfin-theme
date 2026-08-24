@@ -18,8 +18,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 SRC = ROOT / "src"
 DIST = ROOT / "dist"
-NAME = "liquidapple"
-REPO = "https://github.com/dxmoc/jellyfin-liquidapple-theme"
+NAME = "liquidfin"
+REPO = "https://github.com/dxmoc/jellyfin-liquidfin-theme"
 
 # Whitespace may be collapsed away entirely next to these.
 TIGHT = set("{};,")
@@ -124,7 +124,7 @@ def main() -> int:
     # ASCII only: this banner survives minification, and a client that guesses
     # the wrong charset would render mojibake in the one line everybody reads.
     banner = (
-        f"/*! LiquidApple v{version} - Apple Liquid Glass for Jellyfin\n"
+        f"/*! LiquidFin v{version} - Liquid Glass for Jellyfin\n"
         f" * {REPO}\n"
         " * MIT licensed. Built by build.py - edit src/, not dist/.\n"
         " */\n"

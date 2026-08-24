@@ -14,7 +14,7 @@
    paints above the backdrop, so it may only be filled when jellyfin has told us
    there is no artwork to hide, via .withBackdrop. */
 html {
-  background-color: var(--la-ground);
+  background-color: var(--lf-ground);
 }
 
 body,
@@ -49,15 +49,15 @@ body,
   background-image: linear-gradient(
     180deg,
     transparent 0%,
-    transparent var(--la-hero-scrim-start),
-    var(--la-hero-scrim-mid) 66%,
-    var(--la-hero-scrim) 84%,
-    var(--la-ground) 96%
+    transparent var(--lf-hero-scrim-start),
+    var(--lf-hero-scrim-mid) 66%,
+    var(--lf-hero-scrim) 84%,
+    var(--lf-ground) 96%
   ) !important;
 }
 
 .backgroundContainer:not(.withBackdrop) {
-  background-color: var(--la-ground);
+  background-color: var(--lf-ground);
 }
 
 /* `text-rendering: optimizeLegibility` used to stand in here and was dropped on
@@ -69,10 +69,10 @@ body,
    this theme has a whole TV fallback layer for are documented to choke on. */
 html,
 body {
-  font-family: var(--la-font);
+  font-family: var(--lf-font);
   font-synthesis-weight: none;
-  letter-spacing: var(--la-tracking-tight);
-  color: var(--la-text);
+  letter-spacing: var(--lf-tracking-tight);
+  color: var(--lf-text);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -88,18 +88,18 @@ body {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: var(--la-mesh-opacity);
+  opacity: var(--lf-mesh-opacity);
   background:
-    radial-gradient(78em 52em at 12% -8%, var(--la-mesh-a), transparent 62%),
-    radial-gradient(64em 48em at 96% 8%, var(--la-mesh-b), transparent 58%),
-    radial-gradient(72em 60em at 50% 108%, var(--la-mesh-c), transparent 60%),
+    radial-gradient(78em 52em at 12% -8%, var(--lf-mesh-a), transparent 62%),
+    radial-gradient(64em 48em at 96% 8%, var(--lf-mesh-b), transparent 58%),
+    radial-gradient(72em 60em at 50% 108%, var(--lf-mesh-c), transparent 60%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 45%);
-  transition: opacity var(--la-slow) var(--la-ease);
+  transition: opacity var(--lf-slow) var(--lf-ease);
 }
 
 /* Artwork supplies the colour on detail pages, so the mesh steps back. */
 .backgroundContainer.withBackdrop {
-  --la-mesh-opacity: 0.35;
+  --lf-mesh-opacity: 0.35;
 }
 
 /* --- Backdrop artwork ------------------------------------------------------
@@ -126,14 +126,14 @@ body:has(#itemDetailPage:not(.hide)) .backdropImage {
 
 /* Haze over the hero artwork; the image supplies the colour here. */
 body:has(#itemDetailPage:not(.hide)) .backgroundContainer.withBackdrop {
-  --la-mesh-opacity: 0;
+  --lf-mesh-opacity: 0;
 }
 
 /* Substituted for jellyfin's own backdrop-fadein, which this class carries.
    Keeping it on the fade class rather than .backdropImage leaves the resting
    state above intact when no animation runs. */
 .backdropImageFadeIn {
-  animation: la-backdrop-in var(--la-slow) var(--la-ease) both;
+  animation: la-backdrop-in var(--lf-slow) var(--lf-ease) both;
 }
 
 /* Pure spacer: it holds no image of its own, so it only sets how much room the
@@ -150,11 +150,11 @@ body:has(#itemDetailPage:not(.hide)) .backgroundContainer.withBackdrop {
 
 
 .layout-desktop .itemBackdrop {
-  height: var(--la-hero-height);
+  height: var(--lf-hero-height);
 }
 
 .layout-tv .itemBackdrop {
-  height: var(--la-hero-height-tv);
+  height: var(--lf-hero-height-tv);
 }
 
 /* Mobile is the one layout where this element is not a spacer: jellyfin puts
@@ -164,7 +164,7 @@ body:has(#itemDetailPage:not(.hide)) .backgroundContainer.withBackdrop {
    practically always filled. Item types jellyfin refuses to give a banner —
    Person, Book — are the exception; see the note at the end of 05-detail.css. */
 .layout-mobile .itemBackdrop {
-  height: var(--la-hero-height-mobile);
+  height: var(--lf-hero-height-mobile);
   /* Jellyfin pushes this box down by 3em on mobile (measured: 39.36px at the
      13.12px root size it uses there) to clear the header. Desktop gets no such
      margin — the artwork runs up under the floating header, which is the whole
@@ -200,10 +200,10 @@ h3,
 .sectionTitle,
 .pageTitle,
 .formDialogHeaderTitle {
-  font-family: var(--la-font);
+  font-family: var(--lf-font);
   font-weight: 600;
-  letter-spacing: var(--la-tracking-display);
-  color: var(--la-text);
+  letter-spacing: var(--lf-tracking-display);
+  color: var(--lf-text);
 }
 
 h1,
@@ -223,12 +223,12 @@ h1,
 .mediaInfoItem,
 .itemMiscInfo,
 .fieldDescription {
-  color: var(--la-text-dim);
+  color: var(--lf-text-dim);
   letter-spacing: 0;
 }
 
 .tagline {
-  color: var(--la-text-dim);
+  color: var(--lf-text-dim);
   font-style: normal;
   font-weight: 450;
 }
@@ -238,11 +238,11 @@ h1,
    is reserved for hovering an actual prose link. */
 a,
 .button-link {
-  color: var(--la-text);
+  color: var(--lf-text);
   text-decoration: none;
   text-underline-offset: 0.2em;
-  transition: color var(--la-fast) var(--la-ease-out),
-    text-decoration-color var(--la-fast) var(--la-ease-out);
+  transition: color var(--lf-fast) var(--lf-ease-out),
+    text-decoration-color var(--lf-fast) var(--lf-ease-out);
 }
 
 a:hover,
@@ -255,7 +255,7 @@ a:hover,
 .detailsGroupItem > .content > a:hover,
 .overview a:hover {
   text-decoration: underline;
-  text-decoration-color: var(--la-text-faint);
+  text-decoration-color: var(--lf-text-faint);
 }
 
 /* !important because jellyfin underlines these through selectors more specific
@@ -277,12 +277,12 @@ a:hover,
 .detailsGroupItem a:hover,
 .itemGenres a:hover {
   text-decoration: underline !important;
-  text-decoration-color: var(--la-text-faint);
+  text-decoration-color: var(--lf-text-faint);
 }
 
 ::selection {
-  background: var(--la-accent);
-  color: var(--la-accent-text);
+  background: var(--lf-accent);
+  color: var(--lf-accent-text);
 }
 
 /* --- Focus ---------------------------------------------------------------
@@ -296,7 +296,7 @@ a:hover,
    belongs on its sibling .checkboxOutline, which 06-controls.css handles. */
 :focus-visible:not(.emby-input):not(.emby-textarea):not(.emby-select):not(select):not(.emby-checkbox) {
   outline: none;
-  box-shadow: var(--la-focus-ring);
+  box-shadow: var(--lf-focus-ring);
 }
 
 /* --- Scrollbars -----------------------------------------------------------
@@ -323,9 +323,9 @@ a:hover,
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.18);
   border: 2px solid transparent;
-  border-radius: var(--la-r-pill);
+  border-radius: var(--lf-r-pill);
   background-clip: content-box;
-  transition: background var(--la-fast) var(--la-ease-out);
+  transition: background var(--lf-fast) var(--lf-ease-out);
 }
 
 ::-webkit-scrollbar-thumb:hover {

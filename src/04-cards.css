@@ -18,13 +18,13 @@
   margin: 0.55em;
   /* The lift lives on this element now, so the spring has to as well —
      jellyfin sets `transition: none` right here. */
-  transition: transform var(--la-spring-t) var(--la-spring);
+  transition: transform var(--lf-spring-t) var(--lf-spring);
 }
 
 .cardScalable,
 .visualCardBox {
   border: none !important;
-  border-radius: var(--la-r-lg);
+  border-radius: var(--lf-r-lg);
   overflow: hidden !important;
   /* The press springs; the frame below does not — a bouncing shadow reads as a
      bug, and it has to keep up with the card rather than trail it. Both belong
@@ -32,8 +32,8 @@
      second, less specific rule naming only `transform` would be *overridden* by
      the frame rule's `box-shadow` and the press would snap. */
   transition:
-    transform var(--la-spring-t) var(--la-spring),
-    box-shadow var(--la-normal) var(--la-ease);
+    transform var(--lf-spring-t) var(--lf-spring),
+    box-shadow var(--lf-normal) var(--lf-ease);
 }
 
 /* The frame — rim plus shadow — is drawn once, by whichever of the two boxes
@@ -60,24 +60,24 @@
    element, 200 of them on a 100-card library page. */
 .cardBox:not(.visualCardBox) > .cardScalable,
 .cardBox.visualCardBox {
-  box-shadow: var(--la-edge-soft), var(--la-shadow-sm);
+  box-shadow: var(--lf-edge-soft), var(--lf-shadow-sm);
 }
 
 .cardImageContainer,
 .defaultCardBackground {
-  background-color: var(--la-ground-raised);
+  background-color: var(--lf-ground-raised);
   border-radius: inherit;
 }
 
 .cardImageIcon {
-  color: var(--la-text-faint);
+  color: var(--lf-text-faint);
 }
 
 /* Jellyfin picks a saturated colour per person for image-less cards
    (.defaultCardBackground1..N), which reads as loud blue blobs in a cast row.
    Neutralised — the icon alone is enough of a placeholder. */
 [class*="defaultCardBackground"] {
-  background-color: var(--la-ground-raised) !important;
+  background-color: var(--lf-ground-raised) !important;
 }
 
 /* --- Hover ---------------------------------------------------------------
@@ -117,20 +117,20 @@
      card did not appear to rise, it appeared to swell into a square-cornered
      full-bleed rectangle and touch its neighbours. */
   .card-hoverable:hover > .cardBox {
-    transform: translateY(var(--la-lift)) scale(1.03);
+    transform: translateY(var(--lf-lift)) scale(1.03);
   }
 
   /* Rim light on whichever element actually draws the frame — the same split as
      the resting rule above, and for the same measured reason: on a grid card
      the lift shadow on .cardScalable is clipped away and its rim sits under the
-     artwork, so it was a second --la-shadow-lift painted where nothing could
+     artwork, so it was a second --lf-shadow-lift painted where nothing could
      ever see it, once per hovered card. */
   .card-hoverable:hover > .cardBox:not(.visualCardBox) > .cardScalable,
   .card-hoverable:hover > .visualCardBox {
     box-shadow:
-      inset 0 1px 0 0 var(--la-rim-hover),
-      inset 0 0 0 1px var(--la-rim-hover),
-      var(--la-shadow-lift);
+      inset 0 1px 0 0 var(--lf-rim-hover),
+      inset 0 0 0 1px var(--lf-rim-hover),
+      var(--lf-shadow-lift);
   }
 
   .card-hoverable:hover .cardText-first {
@@ -140,7 +140,7 @@
 
 .card-hoverable .cardScalable:active {
   transform: scale(0.985);
-  transition-duration: var(--la-fast);
+  transition-duration: var(--lf-fast);
 }
 
 /* --- Footer text --------------------------------------------------------- */
@@ -151,13 +151,13 @@
 
 .cardText-first,
 .cardText:not(.cardText-secondary) {
-  color: var(--la-text);
+  color: var(--lf-text);
   font-weight: 550;
-  letter-spacing: var(--la-tracking-tight);
+  letter-spacing: var(--lf-tracking-tight);
 }
 
 .cardText-secondary {
-  color: var(--la-text-dim);
+  color: var(--lf-text-dim);
   font-weight: 450;
 }
 
@@ -168,7 +168,7 @@
 .innerCardFooter,
 .chapterThumbTextContainer {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.85), transparent);
-  border-radius: 0 0 var(--la-r-lg) var(--la-r-lg);
+  border-radius: 0 0 var(--lf-r-lg) var(--lf-r-lg);
   padding: 1.6em 0.7em 0.5em;
 }
 
@@ -185,8 +185,8 @@
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  -webkit-backdrop-filter: blur(var(--la-card-footer-blur));
-  backdrop-filter: blur(var(--la-card-footer-blur));
+  -webkit-backdrop-filter: blur(var(--lf-card-footer-blur));
+  backdrop-filter: blur(var(--lf-card-footer-blur));
   -webkit-mask-image: linear-gradient(to bottom, transparent 8%, #000 70%);
   mask-image: linear-gradient(to bottom, transparent 8%, #000 70%);
 }
@@ -240,7 +240,7 @@
   );
   border-radius: inherit;
   opacity: 0;
-  transition: opacity var(--la-normal) var(--la-ease);
+  transition: opacity var(--lf-normal) var(--lf-ease);
 }
 
 .card-hoverable:hover .cardOverlayContainer::after {
@@ -250,16 +250,16 @@
 .cardOverlayButton,
 .cardOverlayFab-primary,
 .listItemImageButton {
-  background-color: var(--la-fill-overlay);
-  -webkit-backdrop-filter: var(--la-material-overlay);
-  backdrop-filter: var(--la-material-overlay);
+  background-color: var(--lf-fill-overlay);
+  -webkit-backdrop-filter: var(--lf-material-overlay);
+  backdrop-filter: var(--lf-material-overlay);
   border: none;
-  border-radius: var(--la-r-pill);
-  box-shadow: var(--la-edge-soft), var(--la-shadow-sm);
+  border-radius: var(--lf-r-pill);
+  box-shadow: var(--lf-edge-soft), var(--lf-shadow-sm);
   color: #fff;
   transition:
-    background-color var(--la-fast) var(--la-ease-out),
-    transform var(--la-fast) var(--la-ease-out);
+    background-color var(--lf-fast) var(--lf-ease-out),
+    transform var(--lf-fast) var(--lf-ease-out);
 }
 
 /* A card's overlay buttons are the single biggest running cost in the theme,
@@ -296,15 +296,15 @@
 .card-hoverable:hover .cardOverlayContainer .cardOverlayFab-primary,
 .card-hoverable:focus-within .cardOverlayContainer .cardOverlayButton,
 .card-hoverable:focus-within .cardOverlayContainer .cardOverlayFab-primary {
-  -webkit-backdrop-filter: var(--la-material-overlay);
-  backdrop-filter: var(--la-material-overlay);
+  -webkit-backdrop-filter: var(--lf-material-overlay);
+  backdrop-filter: var(--lf-material-overlay);
 }
 
 .cardOverlayFab-primary:hover,
 .cardOverlayButton:hover,
 .listItemImageButton:hover {
-  background-color: var(--la-accent);
-  color: var(--la-accent-text);
+  background-color: var(--lf-accent);
+  color: var(--lf-accent-text);
   transform: scale(1.08);
 }
 
@@ -318,7 +318,7 @@
 .backdropCard,
 .squareCard,
 .bannerCard {
-  --la-card-fab-size: 2.75em;
+  --lf-card-fab-size: 2.75em;
 }
 
 /* Jellyfin sizes the play button through `.cardOverlayContainer >
@@ -327,21 +327,21 @@
    button row on every card narrower than ~330px. Shrink both. */
 .cardOverlayContainer > .cardOverlayFab-primary {
   font-size: 110%;
-  width: var(--la-card-fab-size);
-  height: var(--la-card-fab-size);
+  width: var(--lf-card-fab-size);
+  height: var(--lf-card-fab-size);
 }
 
 /* Worth knowing before "fixing" the fill above: the play button never takes it.
    Jellyfin owns that one through `.cardOverlayContainer > .cardOverlayFab-primary
    { background-color: rgba(0,0,0,0.7) }` — a child combinator, (0,2,0), so the
    single-class group loses. Measured live: the fab computes to rgba(0,0,0,0.7)
-   while the check/heart/menu buttons beside it compute to --la-fill-overlay.
+   while the check/heart/menu buttons beside it compute to --lf-fill-overlay.
    Left alone on purpose. Raising our specificity here would put a white icon on
    a 16% white pane over bright artwork, which is exactly the contrast problem
    jellyfin's black disc is solving. The material lands on it either way. */
 .cardOverlayButton-br .cardOverlayButton {
-  width: var(--la-card-overlay-btn);
-  height: var(--la-card-overlay-btn);
+  width: var(--lf-card-overlay-btn);
+  height: var(--lf-card-overlay-btn);
 }
 
 .cardOverlayFab-primary:active,
@@ -362,12 +362,12 @@
 .fullSyncIndicator,
 .mediaSourceIndicator,
 .filterIndicator {
-  background: var(--la-fill-chip);
-  -webkit-backdrop-filter: var(--la-material-chip);
-  backdrop-filter: var(--la-material-chip);
+  background: var(--lf-fill-chip);
+  -webkit-backdrop-filter: var(--lf-material-chip);
+  backdrop-filter: var(--lf-material-chip);
   border: none;
-  border-radius: var(--la-r-pill);
-  box-shadow: var(--la-edge-soft);
+  border-radius: var(--lf-r-pill);
+  box-shadow: var(--lf-edge-soft);
   color: #fff;
   font-weight: 600;
   min-height: 1.55em;
@@ -378,26 +378,26 @@
    nothing can ever shine through. Measured on the library grid: 49 of them, all
    49 computing `blur(12px) saturate(1.8)` behind a solid rgb(245,245,247). */
 .playedIndicator {
-  background: var(--la-accent);
+  background: var(--lf-accent);
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
-  color: var(--la-accent-text);
+  color: var(--lf-accent-text);
 }
 
 /* --- Progress ----------------------------------------------------------- */
 .itemProgressBar:not(.backgroundProgress):not(.playbackProgress):not(.transcodingProgress) {
   height: 0.32em;
   margin: 0.3em 0.55em;
-  border-radius: var(--la-r-pill);
+  border-radius: var(--lf-r-pill);
   background: rgba(255, 255, 255, 0.24);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
   overflow: hidden;
 }
 
 .itemProgressBarForeground {
-  background: var(--la-accent);
-  border-radius: var(--la-r-pill);
-  box-shadow: 0 0 8px var(--la-accent-glow);
+  background: var(--lf-accent);
+  border-radius: var(--lf-r-pill);
+  box-shadow: 0 0 8px var(--lf-accent-glow);
 }
 
 /* --- Section headers ---------------------------------------------------- */
@@ -407,10 +407,10 @@
 }
 
 .sectionTitleTextButton {
-  border-radius: var(--la-r-sm);
-  color: var(--la-text);
+  border-radius: var(--lf-r-sm);
+  color: var(--lf-text);
   padding: 0.2em 0.1em;
-  transition: color var(--la-fast) var(--la-ease-out);
+  transition: color var(--lf-fast) var(--lf-ease-out);
 }
 
 .sectionTitleTextButton:hover {
@@ -418,8 +418,8 @@
 }
 
 .sectionTitleTextButton > .material-icons {
-  color: var(--la-text-faint);
-  transition: transform var(--la-fast) var(--la-ease-out);
+  color: var(--lf-text-faint);
+  transition: transform var(--lf-fast) var(--lf-ease-out);
 }
 
 .sectionTitleTextButton:hover > .material-icons {
@@ -439,15 +439,15 @@
   width: 2.1em;
   height: 2.1em;
   padding: 0;
-  background-color: var(--la-fill);
-  -webkit-backdrop-filter: var(--la-material-thin);
-  backdrop-filter: var(--la-material-thin);
-  border-radius: var(--la-r-pill);
-  box-shadow: var(--la-edge-soft);
+  background-color: var(--lf-fill);
+  -webkit-backdrop-filter: var(--lf-material-thin);
+  backdrop-filter: var(--lf-material-thin);
+  border-radius: var(--lf-r-pill);
+  box-shadow: var(--lf-edge-soft);
 }
 
 .emby-scrollbuttons-button:hover {
-  background-color: var(--la-fill-hover);
+  background-color: var(--lf-fill-hover);
 }
 
 /* --- Scroll-driven entrance ----------------------------------------------
@@ -498,14 +498,14 @@
    Two classes because jellyfin's inset rule is `[dir="ltr"] .cardOverlayButton-br`
    (0,2,0) and a single class loses the tie. */
 .card .cardOverlayButton-br {
-  gap: var(--la-card-overlay-gap);
-  right: var(--la-card-overlay-inset);
-  bottom: var(--la-card-overlay-inset);
+  gap: var(--lf-card-overlay-gap);
+  right: var(--lf-card-overlay-inset);
+  bottom: var(--lf-card-overlay-inset);
 }
 
 [dir="rtl"] .card .cardOverlayButton-br {
   right: auto;
-  left: var(--la-card-overlay-inset);
+  left: var(--lf-card-overlay-inset);
 }
 
 @supports selector(:has(*)) {

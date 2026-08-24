@@ -18,10 +18,10 @@
   /* Ride up onto the bottom of the artwork so the two read as one hero instead
      of an image with a black band under it. The scrim below starts transparent
      at exactly this overlap, so the text stays legible over the image. */
-  margin-top: calc(-1 * var(--la-hero-overlap));
+  margin-top: calc(-1 * var(--lf-hero-overlap));
   position: relative;
   z-index: 1;
-  min-height: var(--la-hero-min);
+  min-height: var(--lf-hero-min);
   /* No scrim here — .itemBackdrop::after owns it now and lines up with the
      artwork. A second gradient on this box only double-darkens the text. */
   background: transparent;
@@ -42,23 +42,23 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  align-items: var(--la-hero-align);
-  text-align: var(--la-hero-align);
-  min-height: var(--la-hero-ribbon-min);
+  align-items: var(--lf-hero-align);
+  text-align: var(--lf-hero-align);
+  min-height: var(--lf-hero-ribbon-min);
   height: 100%;
   background-color: transparent;
-  padding-inline: var(--la-gutter);
+  padding-inline: var(--lf-gutter);
 }
 
 /* Jellyfin makes this a centring grid, which leaves the title block floating in
    the middle of its box and opens a gap between the chips and the buttons below.
-   A bottom-packed column removes the gap and honours --la-hero-align. */
+   A bottom-packed column removes the gap and honours --lf-hero-align. */
 .infoWrapper {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  align-items: var(--la-hero-align);
-  text-align: var(--la-hero-align);
+  align-items: var(--lf-hero-align);
+  text-align: var(--lf-hero-align);
   padding-left: 0;
 }
 
@@ -68,16 +68,16 @@
 }
 
 /* Jellyfin reserves a poster column by putting a ~32vw padding-left on
-   .detailRibbon and .detailPageContent. With --la-detail-poster off that column
+   .detailRibbon and .detailPageContent. With --lf-detail-poster off that column
    is empty, and overriding it on only some of the containers is what left the
    hero text and the body copy on two different left edges. All three now share
-   --la-hero-inset. Re-enabling the poster means raising this to about 33vw. */
+   --lf-hero-inset. Re-enabling the poster means raising this to about 33vw. */
 .layout-desktop .detailRibbon,
 .layout-desktop .detailPageContent,
 .layout-desktop .detailPagePrimaryContent,
 .layout-tv .detailRibbon,
 .layout-tv .detailPageContent {
-  padding-left: var(--la-hero-inset) !important;
+  padding-left: var(--lf-hero-inset) !important;
 }
 
 /* Jellyfin paints .detailRibbon rgba(32,32,32,0.8) — a flat grey slab with
@@ -90,12 +90,12 @@
 }
 
 .mainDetailButtons {
-  justify-content: var(--la-hero-align);
+  justify-content: var(--lf-hero-align);
 }
 
 .detailPagePrimaryContainer > .detailPagePrimaryContent {
   padding-top: 0;
-  padding-inline: var(--la-gutter);
+  padding-inline: var(--lf-gutter);
 }
 
 .layout-mobile .detailPagePrimaryContainer,
@@ -120,14 +120,14 @@
 /* --- Poster / logo -------------------------------------------------------
    On desktop the hero artwork already carries the item, so the poster is off
    by default — the two of them competing for the same band is what made the
-   first attempt look cluttered. --la-detail-poster brings it back. */
+   first attempt look cluttered. --lf-detail-poster brings it back. */
 /* TV is listed with desktop, not left out of it: it has the same full-bleed
    hero and the same reason to keep the poster off by default. Without the
    selector the token never reached it and jellyfin's raw poster rendered at
    480x720 over the hero (measured at 1920x1080). */
 .layout-desktop .detailImageContainer .card,
 .layout-tv .detailImageContainer .card {
-  display: var(--la-detail-poster);
+  display: var(--lf-detail-poster);
   margin: auto auto 0;
   width: 22vh !important;
   float: none;
@@ -152,7 +152,7 @@
 @supports selector(:has(*)) {
   .layout-mobile .itemDetailPage:has(.detailLogo:not(.hide))
     .detailImageContainer .card {
-    display: var(--la-detail-poster);
+    display: var(--lf-detail-poster);
   }
 }
 
@@ -161,8 +161,8 @@
 }
 
 .detailImageContainer .cardScalable {
-  border-radius: var(--la-r-xl);
-  box-shadow: var(--la-edge-soft), var(--la-shadow-lg);
+  border-radius: var(--lf-r-xl);
+  box-shadow: var(--lf-edge-soft), var(--lf-shadow-lg);
 }
 
 /* Jellyfin parks the clear logo at a fixed offset in the middle of the artwork,
@@ -172,14 +172,14 @@
    starts where the artwork ends minus the overlap, so the hero tokens give the
    position without needing to know anything else. */
 .detailLogo {
-  display: var(--la-detail-logo);
+  display: var(--lf-detail-logo);
   position: absolute;
   left: 50%;
   right: auto;
   bottom: auto;
   transform: translateX(-50%);
   width: min(46ch, 62vw);
-  height: var(--la-detail-logo-h);
+  height: var(--lf-detail-logo-h);
   max-height: none;
   background-position: center bottom;
   background-size: contain;
@@ -189,42 +189,42 @@
 
 .layout-desktop .detailLogo {
   top: calc(
-    var(--la-hero-height) - var(--la-hero-overlap) - var(--la-detail-logo-h) - 0.4em
+    var(--lf-hero-height) - var(--lf-hero-overlap) - var(--lf-detail-logo-h) - 0.4em
   );
 }
 
 /* TV had no anchor at all — .detailLogo is position: absolute with no `top`,
    so it fell back to its static position and floated wherever the flow left
-   it. Same construction as desktop (TV does get --la-hero-overlap, the
+   it. Same construction as desktop (TV does get --lf-hero-overlap, the
    .detailPageWrapperContainer rule at the top of this file covers both), only
    against the TV hero's own height. */
 .layout-tv .detailLogo {
   top: calc(
-    var(--la-hero-height-tv) - var(--la-hero-overlap) - var(--la-detail-logo-h) - 0.4em
+    var(--lf-hero-height-tv) - var(--lf-hero-overlap) - var(--lf-detail-logo-h) - 0.4em
   );
 }
 
 /* Same anchor as desktop, against the mobile hero's own height. The 46vh used
    to be written out here as a literal, one file away from the rule that sets
-   it — now both read --la-hero-height-mobile.
+   it — now both read --lf-hero-height-mobile.
 
    display has to be repeated here. The bare `.detailLogo` rule above is one
    class (0,1,0) and jellyfin hides the logo on this layout through a
    two-class selector, so the token never reached mobile: measured on the live
    client, .detailLogo computed to display:none with its image already loaded
-   and --la-detail-logo resolving to block. Same trap as the material groups —
+   and --lf-detail-logo resolving to block. Same trap as the material groups —
    a specialisation of a member needs at least as many classes as the rule it
    has to beat. */
 .layout-mobile .detailLogo {
-  display: var(--la-detail-logo);
+  display: var(--lf-detail-logo);
   width: 78vw;
-  /* No --la-hero-overlap term here, unlike desktop. The overlap is applied by
+  /* No --lf-hero-overlap term here, unlike desktop. The overlap is applied by
      the .detailPageWrapperContainer rule at the top of this file, and that rule
      is desktop/TV only — on mobile the info block starts exactly at the bottom
      edge of the hero. Subtracting an overlap that is never applied is what put
      the logo 172.5px above where it belonged (measured at 430x932: logo bottom
      295.6, hero bottom 468.1). */
-  top: calc(var(--la-hero-height-mobile) - var(--la-detail-logo-h) - 0.2em);
+  top: calc(var(--lf-hero-height-mobile) - var(--lf-detail-logo-h) - 0.2em);
 }
 
 /* The text title steps aside only where a logo actually rendered. Jellyfin puts
@@ -233,18 +233,18 @@
 @supports selector(:has(*)) {
   .itemDetailPage:has(.detailLogo:not(.hide)) .nameContainer > h1.itemName,
   .itemDetailPage:has(.detailLogo:not(.hide)) .nameContainer > h1.parentName {
-    display: var(--la-detail-title);
+    display: var(--lf-detail-title);
   }
 }
 
 /* --- Titles ------------------------------------------------------------- */
 .nameContainer > h1.itemName,
 .nameContainer > h1.parentName {
-  font-family: var(--la-font-display);
+  font-family: var(--lf-font-display);
   font-optical-sizing: auto;
-  font-size: var(--la-title-size);
-  font-weight: var(--la-title-weight);
-  letter-spacing: var(--la-title-tracking);
+  font-size: var(--lf-title-size);
+  font-weight: var(--lf-title-weight);
+  letter-spacing: var(--lf-title-tracking);
   line-height: 1.1;
   margin: 0 0 0.3em;
   text-shadow: 0 2px 24px rgba(0, 0, 0, 0.6);
@@ -265,12 +265,12 @@
 
 .layout-mobile .nameContainer > h1.itemName,
 .layout-mobile .nameContainer > h1.parentName {
-  font-size: var(--la-title-size-mobile);
+  font-size: var(--lf-title-size-mobile);
 }
 
 .itemName.originalTitle,
 .subtitle {
-  color: var(--la-text-dim);
+  color: var(--lf-text-dim);
   font-weight: 450;
   letter-spacing: 0;
 }
@@ -291,11 +291,11 @@
   box-sizing: border-box;
   min-height: 1.95em;
   padding: 0.28em 0.72em;
-  border-radius: var(--la-r-pill);
+  border-radius: var(--lf-r-pill);
   font-size: 0.92em;
   font-weight: 550;
   letter-spacing: 0;
-  color: var(--la-text);
+  color: var(--lf-text);
 }
 
 .mediaInfoItem .material-icons {
@@ -308,7 +308,7 @@
 }
 
 .mediaInfoOfficialRating {
-  border: 1px solid var(--la-rim-hover);
+  border: 1px solid var(--lf-rim-hover);
   background: transparent;
   box-shadow: none;
 }
@@ -337,7 +337,7 @@
 }
 
 .starIcon {
-  color: var(--la-warn);
+  color: var(--lf-warn);
 }
 
 /* --- Buttons ------------------------------------------------------------
@@ -359,29 +359,29 @@
   margin: 0 0.6em 0 0 !important;
   padding: 0 1.5em;
   border: none;
-  border-radius: var(--la-r-pill);
-  background: var(--la-accent);
+  border-radius: var(--lf-r-pill);
+  background: var(--lf-accent);
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.6),
     inset 0 0 0 1px rgba(255, 255, 255, 0.25),
-    var(--la-shadow-md);
-  color: var(--la-accent-text);
+    var(--lf-shadow-md);
+  color: var(--lf-accent-text);
   font-weight: 650;
-  letter-spacing: var(--la-tracking-tight);
+  letter-spacing: var(--lf-tracking-tight);
   transition:
-    transform var(--la-fast) var(--la-ease-out),
-    box-shadow var(--la-fast) var(--la-ease-out);
+    transform var(--lf-fast) var(--lf-ease-out),
+    box-shadow var(--lf-fast) var(--lf-ease-out);
 }
 
 /* `background` has to be restated here, and leaving it out was a real bug: the
    shared interaction group in 02-material.css matches this button through
-   `.emby-button.raised:hover` and sets `background-color: var(--la-fill-hover)`.
+   `.emby-button.raised:hover` and sets `background-color: var(--lf-fill-hover)`.
    A hover rule that says nothing about the background therefore let a
    *translucent* fill replace the solid accent, and the primary action turned to
    glass under the pointer — reported on 2026-08-18 as the play button and its
-   neighbours "filling with blur". Measured with `LA_HOVER=.btnPlay` on the
+   neighbours "filling with blur". Measured with `LF_HOVER=.btnPlay` on the
    detail page: still wrong at 350ms, so it was never a flicker, only a state
    nobody held still long enough to see.
 
@@ -389,13 +389,13 @@
    filter makes the element a backdrop root, and this button sits in a row of
    glass — not something to hand chrome another reason to recomposite. */
 .btnPlay.detailButton:hover {
-  background: var(--la-accent);
+  background: var(--lf-accent);
   box-shadow:
     inset 0 0 0 999px rgba(255, 255, 255, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.6),
     inset 0 0 0 1px rgba(255, 255, 255, 0.3),
-    var(--la-shadow-lift),
-    0 0 24px var(--la-accent-glow);
+    var(--lf-shadow-lift),
+    0 0 24px var(--lf-accent-glow);
 }
 
 .btnPlay.detailButton .detailButton-content {
@@ -410,7 +410,7 @@
 .btnPlay.detailButton::after {
   content: attr(title);
   font-weight: 650;
-  letter-spacing: var(--la-tracking-tight);
+  letter-spacing: var(--lf-tracking-tight);
   white-space: nowrap;
 }
 
@@ -420,14 +420,14 @@
   margin: 0.2em !important;
   padding: 0 !important;
   border: none;
-  border-radius: var(--la-r-pill);
-  background-color: var(--la-fill);
-  color: var(--la-text);
+  border-radius: var(--lf-r-pill);
+  background-color: var(--lf-fill);
+  color: var(--lf-text);
 }
 
 .detailButton:not(.btnPlay):hover {
-  background-color: var(--la-fill-hover);
-  box-shadow: var(--la-edge-soft), var(--la-shadow-sm);
+  background-color: var(--lf-fill-hover);
+  box-shadow: var(--lf-edge-soft), var(--lf-shadow-sm);
   color: #fff;
 }
 
@@ -437,13 +437,13 @@
 
 .playstatebutton-icon-played,
 .emby-button[title="Favorite"] .material-icons.favorite {
-  color: var(--la-accent);
+  color: var(--lf-accent);
 }
 
 /* p.itemGenres sits above the tagline in .detailSectionContent. Not in the
    preview harness, so it went unstyled and inherited body text weight. */
 .itemGenres {
-  color: var(--la-text-dim);
+  color: var(--lf-text-dim);
   font-weight: 500;
   letter-spacing: 0;
   margin: 0 0 0.4em;
@@ -452,7 +452,7 @@
 /* --- Overview ----------------------------------------------------------- */
 .detailSectionContent,
 .overview {
-  color: var(--la-text-dim);
+  color: var(--lf-text-dim);
   font-size: 1.02em;
   font-weight: 450;
   letter-spacing: 0;
@@ -464,7 +464,7 @@
   background: transparent;
   border: none;
   box-shadow: none;
-  color: var(--la-text);
+  color: var(--lf-text);
   font-weight: 600;
   padding: 0.2em 0;
 }
@@ -477,11 +477,11 @@
 .itemDetailsGroup {
   margin-top: 1.2em;
   padding: 1em 1.2em;
-  border-radius: var(--la-r-lg);
-  background: var(--la-fill);
-  -webkit-backdrop-filter: var(--la-material-thin);
-  backdrop-filter: var(--la-material-thin);
-  box-shadow: var(--la-edge-soft);
+  border-radius: var(--lf-r-lg);
+  background: var(--lf-fill);
+  -webkit-backdrop-filter: var(--lf-material-thin);
+  backdrop-filter: var(--lf-material-thin);
+  box-shadow: var(--lf-edge-soft);
 }
 
 /* On a person page jellyfin builds all four rows and then puts `.hide` on every
@@ -500,17 +500,17 @@
 }
 
 .detailsGroupItem:not(:last-child) {
-  border-bottom: 1px solid var(--la-rim);
+  border-bottom: 1px solid var(--lf-rim);
 }
 
 .detailsGroupItem > .label {
-  color: var(--la-text-faint);
+  color: var(--lf-text-faint);
   font-weight: 550;
   min-width: 9em;
 }
 
 .detailsGroupItem > .content {
-  color: var(--la-text);
+  color: var(--lf-text);
 }
 
 /* --- External links / tags --------------------------------------------- */
@@ -530,7 +530,7 @@
   line-height: 2.25;
 }
 
-/* The fill is the one thing these take from --la-fill-tag instead of the
+/* The fill is the one thing these take from --lf-fill-tag instead of the
    control tier — they are the only tier-2 controls with the hero backdrop
    directly behind them, and a 7% white fill made each pill the colour of
    whatever part of the frame it happened to land on. Everything else about the
@@ -538,15 +538,15 @@
    Same trade as .skip-button, for the same reason. */
 .itemExternalLinks.focuscontainer-x > .button-link,
 .itemTags > a {
-  background-color: var(--la-fill-tag);
-  -webkit-backdrop-filter: var(--la-material-tag);
-  backdrop-filter: var(--la-material-tag);
+  background-color: var(--lf-fill-tag);
+  -webkit-backdrop-filter: var(--lf-material-tag);
+  backdrop-filter: var(--lf-material-tag);
   padding: 0.35em 0.85em;
-  border-radius: var(--la-r-pill);
+  border-radius: var(--lf-r-pill);
   font-size: 0.88em;
   font-weight: 550;
   text-decoration: none;
-  color: var(--la-text-dim);
+  color: var(--lf-text-dim);
 }
 
 /* Out of 02's shared hover group, because that one is written for a control
@@ -555,11 +555,11 @@
    same neutral fill. */
 .itemExternalLinks.focuscontainer-x > .button-link:hover,
 .itemTags > a:hover {
-  background-color: var(--la-fill-tag-hover);
+  background-color: var(--lf-fill-tag-hover);
   box-shadow:
-    inset 0 1px 0 0 var(--la-rim-hover),
-    inset 0 0 0 1px var(--la-rim-hover),
-    var(--la-shadow-sm);
+    inset 0 1px 0 0 var(--lf-rim-hover),
+    inset 0 0 0 1px var(--lf-rim-hover),
+    var(--lf-shadow-sm);
   color: #fff;
 }
 
@@ -573,7 +573,7 @@
 
 .trackSelectionFieldContainer > label,
 .selectLabel {
-  color: var(--la-text-faint);
+  color: var(--lf-text-faint);
   font-size: 0.8em;
   font-weight: 600;
   letter-spacing: 0.03em;
@@ -583,12 +583,12 @@
 /* --- Cast ------------------------------------------------------------- */
 #castCollapsible .cardImageContainer,
 #guestCastContent .cardImageContainer {
-  border-radius: var(--la-r-pill);
+  border-radius: var(--lf-r-pill);
 }
 
 #castCollapsible .cardScalable,
 #guestCastContent .cardScalable {
-  border-radius: var(--la-r-pill);
+  border-radius: var(--lf-r-pill);
 }
 
 /* A pill radius only reads as a circle on a square box, and jellyfin hands out
@@ -607,8 +607,8 @@
 }
 
 /* --- Hero ohne Artwork ----------------------------------------------------
-   The hero in 01-base.css reserves --la-hero-height unconditionally, and the
-   wrapper then rides up by --la-hero-overlap to meet it. When jellyfin renders
+   The hero in 01-base.css reserves --lf-hero-height unconditionally, and the
+   wrapper then rides up by --lf-hero-overlap to meet it. When jellyfin renders
    no backdrop at all — which is the default, "Backdrops anzeigen" is off — that
    is 72vh of nothing above the title: measured 914px on a 1269px viewport, on
    every single item. Reserving space for artwork that does not exist is the
@@ -628,7 +628,7 @@
    builds one above 1000px of viewport width — so an unscoped
    :root:not(:has(.backdropImage)) reported "no artwork" on *every* mobile item,
    including ones whose hero was fully painted. The visible damage was the clear
-   logo: --la-detail-logo resolved to none and --la-detail-title to block on a
+   logo: --lf-detail-logo resolved to none and --lf-detail-title to block on a
    page where .detailLogo had its image loaded and ready. TV is listed alongside
    desktop because it works the desktop way — #itemBackdrop stays an empty
    spacer there and the picture is .backdropImage (measured at 1920x1080, both
@@ -637,11 +637,11 @@
 @supports selector(:has(*)) {
   :root.layout-desktop:not(:has(.backdropImage)),
   :root.layout-tv:not(:has(.backdropImage)) {
-    --la-hero-overlap: 0vh;
+    --lf-hero-overlap: 0vh;
     /* The logo is positioned off the hero, and without artwork there is no
        hero to position against — so hand the page back to the text title. */
-    --la-detail-logo: none;
-    --la-detail-title: block;
+    --lf-detail-logo: none;
+    --lf-detail-title: block;
   }
 
   /* TV was getting the token half of this and not the geometry half, so the
@@ -655,7 +655,7 @@
 
   .layout-desktop:not(:has(.backdropImage)) .detailPageWrapperContainer,
   .layout-tv:not(:has(.backdropImage)) .detailPageWrapperContainer {
-    padding-top: calc(var(--la-header-h) + 2em);
+    padding-top: calc(var(--lf-header-h) + 2em);
   }
 }
 
@@ -669,7 +669,7 @@
       setting entirely and falls back Backdrop -> ParentBackdrop -> Primary.
       Across all 1880 items on the reference server, none lacks every image.
       What is left is the item types jellyfin refuses a banner — Person, Book.
-      A Person page really does show --la-hero-height-mobile of nothing
+      A Person page really does show --lf-hero-height-mobile of nothing
       (measured 428.7px at 430x932).
 
    2. The only signal CSS can read is jellyfin's own lazy-loader marker,
