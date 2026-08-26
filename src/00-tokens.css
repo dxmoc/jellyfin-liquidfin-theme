@@ -114,9 +114,16 @@
      Three states share one bar, so they have to be three readable steps: empty
      track, buffered-ahead, played. The played part is --lf-accent; these two
      are what is left. --lf-track-buffered lands on jellyfin's own
-     .mdl-slider-background-upper — see 08-player.css. */
-  --lf-track: rgba(255, 255, 255, 0.22);
-  --lf-track-buffered: rgba(255, 255, 255, 0.42);
+     .mdl-slider-background-upper — see 08-player.css.
+
+     The gap between these two is the whole point. Direct play buffers only
+     seconds ahead, so on a feature-length film the buffered fill is a couple
+     of pixels wide (measured: 0.25% of the track) sitting right next to a
+     white thumb. At 0.22 / 0.42 that stripe was there and still unreadable.
+     Pushing the empty track down and the buffered fill up widens the step to
+     where a 2px sliver registers. */
+  --lf-track: rgba(255, 255, 255, 0.14);
+  --lf-track-buffered: rgba(255, 255, 255, 0.62);
 
   /* --- Rim light -----------------------------------------------------------
      A pane of glass is lit from above and shadowed below. This one composite

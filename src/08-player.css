@@ -179,10 +179,17 @@
    attribute at all), so a global fill would colour its whole track.
 
    `.mdl-slider-background-lower` comes later in the DOM and therefore paints on
-   top: played over buffered, no z-index needed. */
+   top: played over buffered, no z-index needed.
+
+   min-width is what makes the first seconds visible at all: a 0.25% fill on a
+   1200px track is 3px, and on a longer film or a narrower window it rounds
+   away to nothing. 2px is the floor at which the fill still reads as a fill.
+   Nothing is lost when the buffer is genuinely empty — by the time this track
+   is on screen the player has always loaded something. */
 .osdPositionSlider ~ .mdl-slider-background-flex-container .mdl-slider-background-upper {
   background: var(--lf-track-buffered);
   border-radius: var(--lf-r-pill);
+  min-width: 2px;
 }
 
 .positionTime,
