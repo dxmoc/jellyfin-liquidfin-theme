@@ -378,9 +378,15 @@ input.emby-checkbox:focus-visible:not(.emby-input):not(.emby-textarea):not(.emby
   transform: scale(1.25);
 }
 
+/* No padding of ours. Jellyfin puts 0.5em 0.75em on `.sliderBubbleText`
+   already, so the text mode was double padded — and the trickplay mode has no
+   text at all, only a preview frame that fills the bubble edge to edge. There
+   the padding drew a glass rim around the image (reported 2026-08-31). The
+   radius rounds that image instead, which needs the clip. */
 .sliderBubble {
-  padding: 0.35em 0.6em;
-  border-radius: var(--lf-r-sm);
+  padding: 0;
+  border-radius: var(--lf-r-md);
+  overflow: hidden;
   box-shadow: var(--lf-edge-soft), var(--lf-shadow-md);
 }
 

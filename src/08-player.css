@@ -220,6 +220,70 @@
   font-weight: 500;
 }
 
+/* --- Trickplay / chapter preview ----------------------------------------
+   The frame that appears above the timeline on hover. Structure, taken from
+   the 10.11 client (`updateTrickplayBubbleHtml` in
+   controllers/playback/video/index.js):
+
+     .sliderBubble
+       .chapterThumbContainer          inline style="overflow: hidden"
+         .chapterThumbWrapper          inline width/height in px + the sprite as
+                                       background-image (chapter mode instead
+                                       has an <img class="chapterThumb">)
+         .chapterThumbTextContainer
+           .chapterThumbText-dim       chapter name — an *empty* div on items
+                                       that only have trickplay
+           h2.chapterThumbText         the timestamp
+
+   Reported 2026-08-31 as looking off, and it was three separate things: the
+   glass rim from the bubble's padding (fixed in 06-controls.css), jellyfin's
+   own `0 0 1.9vh #000` halo on the container, and the text band — it arrives
+   here wearing the card footer's costume from 04-cards.css, which is built for
+   a 400px card, not a 240px preview: 1.6em of padding and a 22px radius the
+   bubble does not have. Plus an <h2> at heading size for a five character
+   timestamp, and an empty name div holding a line of space above it. */
+.sliderBubble .chapterThumbContainer {
+  box-shadow: none;
+  border-radius: 0;
+}
+
+/* Kills the baseline gap under the chapter-mode <img>: a strip of glass along
+   the bottom edge, since the container is a block, not the bubble's flex. */
+.chapterThumb,
+.chapterThumbWrapper {
+  display: block;
+}
+
+/* The bubble clips the corners, so the band must not round its own — a 22px
+   radius inside a 16px one shows as two mismatched arcs. */
+.sliderBubble .chapterThumbTextContainer {
+  border-radius: 0;
+  padding: 1.1em 0.6em 0.4em;
+  text-align: center;
+}
+
+.sliderBubble .chapterThumbText {
+  padding: 0;
+  font-size: 0.95em;
+  font-weight: 600;
+  letter-spacing: var(--lf-tracking-tight);
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.sliderBubble .chapterThumbText-dim {
+  font-size: 0.85em;
+  font-weight: 450;
+  color: var(--lf-text-dim);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* Trickplay-only items get the name div anyway, empty. Left alone it reserves
+   a line and pushes the timestamp up into the picture. */
+.chapterThumbText:empty {
+  display: none;
+}
+
 /* --- Now playing bar -------------------------------------------------- */
 .nowPlayingBar {
   --lf-fill-chrome: rgba(18, 20, 26, 0.58);
