@@ -3803,15 +3803,34 @@ table:not(.MuiTable-root.MuiTable-stickyHeader) {
    `.mdl-slider-background-lower` comes later in the DOM and therefore paints on
    top: played over buffered, no z-index needed.
 
-   min-width is what makes the first seconds visible at all: a 0.25% fill on a
-   1200px track is 3px, and on a longer film or a narrower window it rounds
-   away to nothing. 2px is the floor at which the fill still reads as a fill.
-   Nothing is lost when the buffer is genuinely empty — by the time this track
-   is on screen the player has always loaded something. */
+   The box-shadow is what makes any of this visible, and the reason is that the
+   element is not the fill it looks like. Jellyfin writes the current buffered
+   *range*, not the span from zero — `left` is buffered.start, `width` is
+   end minus start. Measured mid-playback, transcoding, 10.11.11:
+
+     video.buffered = [437.97, 521.99]  at duration 3507.49
+     .mdl-slider-background-upper  style="left: 12.4876%; width: 2.39457%"
+     .mdl-slider-background-lower  style="width: 14.58%"     ← the playhead
+
+   So the fill is a genuine 2.4% of the track — about 30px — but the range
+   starts behind the playhead, and played paints over it. 28 of those 30 pixels
+   are buried; 4px surface to the right of the thumb. That, not contrast, is
+   why the buffer has always looked absent.
+
+   Extending it leftward fixes it without touching the right edge, which is the
+   edge that carries the meaning (buffered.end). A spread-less shadow offset one
+   viewport to the left paints a slab from the element's left edge back past the
+   start of the track; `.mdl-slider-background-flex` is overflow:hidden, so it
+   is clipped to the bar. Played still covers everything behind the thumb, so
+   what is left on screen is exactly playhead → buffered.end.
+
+   A gap between two buffered ranges reads as filled under this, which is the
+   trade: the common case (one range, playing forward) becomes legible, and the
+   rare one overstates by the width of the gap. */
 .osdPositionSlider ~ .mdl-slider-background-flex-container .mdl-slider-background-upper {
   background: var(--lf-track-buffered);
-  border-radius: var(--lf-r-pill);
-  min-width: 2px;
+  border-radius: 0;
+  box-shadow: -100vw 0 0 var(--lf-track-buffered);
 }
 
 .positionTime,
