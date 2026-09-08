@@ -69,6 +69,16 @@
   border-radius: inherit;
 }
 
+/* Jellyfin 12 (React cards, the default layout since 12.0) puts an empty
+   `<a class="cardImageContainer">` *inside* .cardOverlayContainer as the
+   click target. It is not an image container, it is a full-size link sitting
+   on top of the artwork — with the raised ground from above it painted an
+   opaque slab over every poster on hover (measured 2026-09-08: the 174x261
+   anchor computed to rgb(14,16,21) and hid the image completely). */
+.cardOverlayContainer > .cardImageContainer {
+  background-color: transparent;
+}
+
 .cardImageIcon {
   color: var(--lf-text-faint);
 }
@@ -342,6 +352,12 @@
 .cardOverlayButton-br .cardOverlayButton {
   width: var(--lf-card-overlay-btn);
   height: var(--lf-card-overlay-btn);
+  /* Jellyfin 12 renders these as MUI IconButtons, and the three do not share
+     a size: played/favorite are `size="small"` (1.125rem), the more-menu is
+     the medium default (1.5rem). The em-based token above then gave 41px and
+     55px side by side. Pin the font-size to the small one so all three land
+     on the same disc; the SVG inside is rem-sized and does not move. */
+  font-size: 1.125rem;
 }
 
 .cardOverlayFab-primary:active,
