@@ -72,6 +72,22 @@
   }
 }
 
+/* Jellyfin 12 makes the modern layout the default, and there the bar over a
+   library page is a MUI AppBar (48px toolbar plus a 48px library toolbar), not
+   .skinHeader. Its React side only drops the toolbar once the route is /video,
+   and that navigation waits for playback to actually start — on a transcode
+   that is easily ten seconds or more. Measured 2026-09-08, sampled every 500ms
+   after clicking play in the movie grid: .videoPlayerContainer is in the DOM
+   at ~1000ms, the legacy .skinHeader is gone on the same sample, and the
+   96px MuiAppBar stays at display:flex / opacity 1 through 12s with the hash
+   still on #/movies. Same signal, same treatment. The OSD's own header is a
+   .skinHeader.osdHeader and is not an AppBar, so it is unaffected. */
+@supports selector(:has(*)) {
+  :root:has(.videoPlayerContainer) .MuiAppBar-root {
+    display: none;
+  }
+}
+
 .osdControls {
   gap: 0.2em;
 }
