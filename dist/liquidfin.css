@@ -1,4 +1,4 @@
-/*! LiquidFin v0.2.2 - Liquid Glass for Jellyfin
+/*! LiquidFin v0.2.3 - Liquid Glass for Jellyfin
  * https://github.com/dxmoc/jellyfin-liquidfin-theme
  * MIT licensed. Built by build.py - edit src/, not dist/.
  */
@@ -12,7 +12,7 @@
 
 :root {
   color-scheme: dark;
-  --lf-version: "0.2.2";
+  --lf-version: "0.2.3";
 
   /* --- Ambient ground ------------------------------------------------------
      Glass has nothing to bend when it sits on flat black, so the page carries
@@ -1602,6 +1602,16 @@ a:hover,
   border-radius: inherit;
 }
 
+/* Jellyfin 12 (React cards, the default layout since 12.0) puts an empty
+   `<a class="cardImageContainer">` *inside* .cardOverlayContainer as the
+   click target. It is not an image container, it is a full-size link sitting
+   on top of the artwork — with the raised ground from above it painted an
+   opaque slab over every poster on hover (measured 2026-09-08: the 174x261
+   anchor computed to rgb(14,16,21) and hid the image completely). */
+.cardOverlayContainer > .cardImageContainer {
+  background-color: transparent;
+}
+
 .cardImageIcon {
   color: var(--lf-text-faint);
 }
@@ -1875,6 +1885,12 @@ a:hover,
 .cardOverlayButton-br .cardOverlayButton {
   width: var(--lf-card-overlay-btn);
   height: var(--lf-card-overlay-btn);
+  /* Jellyfin 12 renders these as MUI IconButtons, and the three do not share
+     a size: played/favorite are `size="small"` (1.125rem), the more-menu is
+     the medium default (1.5rem). The em-based token above then gave 41px and
+     55px side by side. Pin the font-size to the small one so all three land
+     on the same disc; the SVG inside is rem-sized and does not move. */
+  font-size: 1.125rem;
 }
 
 .cardOverlayFab-primary:active,
@@ -3696,6 +3712,22 @@ table:not(.MuiTable-root.MuiTable-stickyHeader) {
    TV webviews have today. */
 @supports selector(:has(*)) {
   :root:has(.videoPlayerContainer) .skinHeader:not(.osdHeader) {
+    display: none;
+  }
+}
+
+/* Jellyfin 12 makes the modern layout the default, and there the bar over a
+   library page is a MUI AppBar (48px toolbar plus a 48px library toolbar), not
+   .skinHeader. Its React side only drops the toolbar once the route is /video,
+   and that navigation waits for playback to actually start — on a transcode
+   that is easily ten seconds or more. Measured 2026-09-08, sampled every 500ms
+   after clicking play in the movie grid: .videoPlayerContainer is in the DOM
+   at ~1000ms, the legacy .skinHeader is gone on the same sample, and the
+   96px MuiAppBar stays at display:flex / opacity 1 through 12s with the hash
+   still on #/movies. Same signal, same treatment. The OSD's own header is a
+   .skinHeader.osdHeader and is not an AppBar, so it is unaffected. */
+@supports selector(:has(*)) {
+  :root:has(.videoPlayerContainer) .MuiAppBar-root {
     display: none;
   }
 }
