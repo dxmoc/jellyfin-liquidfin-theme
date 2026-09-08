@@ -1,4 +1,4 @@
-/*! LiquidFin v0.2.3 - Liquid Glass for Jellyfin
+/*! LiquidFin v0.2.4 - Liquid Glass for Jellyfin
  * https://github.com/dxmoc/jellyfin-liquidfin-theme
  * MIT licensed. Built by build.py - edit src/, not dist/.
  */
@@ -12,7 +12,7 @@
 
 :root {
   color-scheme: dark;
-  --lf-version: "0.2.3";
+  --lf-version: "0.2.4";
 
   /* --- Ambient ground ------------------------------------------------------
      Glass has nothing to bend when it sits on flat black, so the page carries
@@ -2670,6 +2670,23 @@ a:hover,
 #castCollapsible .cardImageContainer,
 #guestCastContent .cardImageContainer {
   background-position: center 15%;
+}
+
+/* The menu button on a person card sits in the bottom-right corner of the
+   card's *box*, and the box is clipped to a circle. Measured 2026-09-08 on a
+   173px avatar: the 42px disc lands at 172..214 x 532..574 with the circle
+   ending at 223 x 582 — its outer corner is outside the arc, so the circle cuts
+   a slice off it (reported as "the button is broken"). Jellyfin's own rounded
+   variant nudges it to `right: 20%`; centring it on the bottom of the circle
+   reads cleaner and holds at every size: with the same inset the disc's bottom
+   edge sits 78px below the centre of an 86px circle, where the arc is still
+   72px wide, so the 42px disc has room either side. Two classes so it wins
+   against `.card .cardOverlayButton-br` in 04-cards.css and jellyfin's
+   `[dir="ltr"] .cardOverlayButton-br`. */
+.card.personCard .cardOverlayButton-br {
+  right: auto;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /* --- Hero ohne Artwork ----------------------------------------------------
