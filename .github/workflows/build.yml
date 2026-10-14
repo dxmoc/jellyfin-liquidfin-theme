@@ -1,0 +1,28 @@
+name: build
+
+# dist/ is committed because users import it straight from the repo (jsDelivr
+# and GitHub Pages). This rebuilds it from src/ and fails if the committed
+# files differ, so a src/ change without a fresh build.py run cannot slip in.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  dist:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Build
+        run: python build.py
+
+      - name: dist/ matches src/
+        run: git diff --exit-code --stat -- dist/
