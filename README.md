@@ -23,7 +23,7 @@ Dashboard → **Branding** → **Custom CSS code**, paste this and save:
 @import url("https://cdn.jsdelivr.net/gh/dxmoc/jellyfin-liquidfin-theme@main/dist/liquidfin.min.css");
 ```
 
-Swap `@main` for a tag — `@v0.2.2` — to pin a release. `@main` follows every
+Swap `@main` for a tag — `@v0.2.4` — to pin a release. `@main` follows every
 change on its own, though a new one can take a while to reach you: jsDelivr
 caches it for 12 hours, and your browser holds its copy longer still. The same
 file is on [GitHub Pages](https://dxmoc.github.io/jellyfin-liquidfin-theme/dist/liquidfin.min.css)
@@ -64,7 +64,7 @@ Full list: [`src/00-tokens.css`](src/00-tokens.css).
 
 ## Compatibility
 
-Built against the Jellyfin **10.10 / 10.11** web client.
+Built against the Jellyfin **10.10 / 10.11** web client and kept working on **12**.
 
 Needs `backdrop-filter`; without it the theme falls back to opaque surfaces on
 its own. It also honours `prefers-reduced-transparency`, `prefers-reduced-motion`
