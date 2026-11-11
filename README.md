@@ -71,7 +71,20 @@ its own. It also honours `prefers-reduced-transparency`, `prefers-reduced-motion
 and `prefers-contrast: more`, and switches to solid surfaces with a wider focus
 ring on TV clients, where stacked blur layers are a slideshow.
 
-Sluggish on a weak machine? Set `--lf-refract-blur: 0px`, then `--lf-blur: 0px`.
+Sluggish on a weak machine? The radius tokens will not help much:
+`--lf-blur: 0px` still leaves every `backdrop-filter` in place. Turning
+transparency off in the operating system removes them all, wherever the browser
+passes that on as `prefers-reduced-transparency`. Where it does not — most
+phones — the ones to take away are the small panes on every card:
+
+```css
+:root {
+  --lf-material-overlay: none;
+  --lf-material-chip: none;
+  --lf-fill-overlay: #14161c;    /* solid, with no blur left to carry them */
+  --lf-fill-chip: #191b23;
+}
+```
 
 Nothing is loaded from anywhere else: no CDN assets, no remote images, no web
 fonts. The type is whatever the machine already has — SF Pro on Apple hardware,
