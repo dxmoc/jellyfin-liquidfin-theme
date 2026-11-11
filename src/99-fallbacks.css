@@ -283,12 +283,22 @@
   box-shadow: var(--lf-focus-ring), var(--lf-shadow-lift);
 }
 
-/* Kept separate from the ring so it stays at (0,3,0): cards run their own
-   transform off a scroll timeline in 04-cards.css and should keep it. */
+/* Kept separate from the ring so it stays at (0,3,0). */
 .layout-tv .show-focus:focus,
 .layout-tv .show-animation:focus,
 .layout-tv .emby-select-focusscale:focus {
   transform: scale(var(--lf-focus-scale));
+}
+
+/* Where view() exists, the entrance animation in 04-cards.css used to run on
+   TV too, and its fill held a card's transform at `none` — the scale above
+   never reached a focused card on those clients. The animation is gone from
+   TV; this keeps what they have always rendered. */
+@supports (animation-timeline: view()) {
+  .layout-tv .card.show-focus:focus,
+  .layout-tv .card.show-animation:focus {
+    transform: none;
+  }
 }
 
 /* Fields are carved out of 01-base's focus rule, so they need the ring by name.
