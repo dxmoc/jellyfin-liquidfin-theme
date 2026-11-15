@@ -29,8 +29,10 @@
 .manualLoginForm,
 .visualLoginForm {
   position: relative;
+  /* padding must stay inside the 100%, or phones scroll sideways */
+  box-sizing: border-box;
   width: 100%;
-  max-width: 27em;
+  max-width: 31em;
   margin: 3.5em auto;
   padding: 2.2em 2em;
   border: none;
@@ -43,7 +45,7 @@
 }
 
 .visualLoginForm {
-  max-width: 46em;
+  max-width: 50em;
 }
 
 .manualLoginForm .sectionTitle,
